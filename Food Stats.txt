@@ -1,0 +1,66 @@
+(protein/carbs/fat) (proportion)
+
+Ingredients:
+
+protein powder: 130 cal (25g/2g/2.5g)
+
+butter: 70 cal (0.1g/0g/8g) (10g)
+
+milk: 90 cal (9g/13g/0g) (250ml)
+
+creme cheese: 70 cal (2g/3g/6g) (30g)
+
+bagel: 180 cal (6.2g/32g/1.4g)
+
+croissant: 272 cal (5.5g/31g/14g)
+
+chicken breast(1/4): 386 cal (58g/0g/15.2g)
+
+chicken leg(1/4): 321 cal (34g/0g/20.3g)
+
+banana: 105 cal (1.3g/27g/0.4g)
+
+apple: 95 cal (0.5g/25g/0.3g)
+
+orange: 69 cal (1.3g/18g/0.2g)
+
+kiwis: 84 cal (1.6g/20g/0.8g) (x2)
+
+tangerines: 84 cal (1.4g/24g/0.6g) (x2)
+
+yogurt: 140 cal (6g/7g/10g) (175g)
+
+fried egg: 90 cal (6.3g/0.4g/6.8g)
+
+ham: 186 cal (30g/1.4g/6.8g) (134g)
+
+rolled oats: 110 cal (4g/20g/2g) (30g)
+
+chia seeds: 70 cal (2g/6g/4.5g) (15g)
+
+baguette: 881 cal (35g/168g/7.8g) (324g)
+
+olive oil: 119 cal (0g/0g/14g) (14.8ml)
+
+dijon: 10 cal (0.4g/0g/0.5g) (4.9ml)
+
+frozen vegetables: 25 cal (2g/5g/0g) (85g)
+
+white rice: 160 cal (4g/36g/0g) (45g)
+
+salmon: 468 cal (50g/0g/28g) (227g)
+
+pastirma: 48 cal (8.3g/2.5g/0.8g) (28g)
+
+
+Meals:
+
+protein shake: protein powder (x2), banana, milk (400ml)
+
+overnight oats: chia seeds (3.3g), rolled oats (45g), yogurt (116.7g), milk (118.3ml), protein powder
+
+bagel with creme cheese and ham: bagel, creme cheese (40g), ham (50g)
+
+bagel with creme cheese and pastirma: bagel, creme cheese (33g), pastirma (35g)
+
+baked salmon: salmon (333g), dijon (7.4ml), olive oil (2.5ml)
