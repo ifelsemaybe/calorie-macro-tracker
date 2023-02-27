@@ -52,10 +52,56 @@ salmon: 468 cal (50g/0g/28g) (227g)
 
 pastirma: 48 cal (8.3g/2.5g/0.8g) (28g)
 
+ground beef: 308 cal (31g/0g/20g) (113g)
+
+onion: 41 cal (1.3g/9.5g/0.2g) (94g)
+
+ground cumin: 23 cal (0.7g/2.8g/1.4g) (14.8ml)
+
+ground black pepper: 6 cal (0.2g/1.5g/0.1g) (4.9ml)
+
+chili powder: 68 cal (3.2g/11.7g/3.5g) (44.4ml)
+
+ground cinnamon: 6 cal (0.1g/2.1g/0g) (4.9ml)
+
+paprika: 13 cal (0.7g/2.4g/0.6g) (9.9ml)
+
+garlic clove: 14 cal (0.6g/3g/0.1g) (x3)
+
+tomato puree: 95 cal (4.1g/22g/0.5g) (236.6ml)
+
+corona: 148 cal (0g/14g/0g) (330ml)
+
+cocoa powder: 20 cal (1g/3g/0.5g) (14.8ml)
+
+romano beans: 170 cal (11g/29g/0.5g) (59.2ml)
+
+bread: 77 cal (2.6g/14g/1g) (29g)
+
+honey: 64 cal (0.1g/17g/0g) (21g)
+
+pineapple: 41 cal (0.5g/11g/0.1g) (83g)
+
+prosciutto: 55 cal (7.9g/0.1g/2.4g) (28g)
+
+premiere bread: 250 cal (8g/52g/1g) (100g)
+
+pumpkin: 49 cal (1.8g/12g/0.2g) (245g)
+
+potato: 161 cal (4.3g/37g/0.2g) (173g)
+
+trout: 118 cal (17g/0g/5.3g) (62g)
+
+french fries: 365 cal (4g/48g/17g) (117g)
+
+chicken stock: 15 cal (3g/1g/0g) (250ml)
+
+carrot: 16 cal (0.4g/3.8g/0.1g) (46g)
+
 
 Meals:
 
-protein shake: protein powder (x2), banana, milk (400ml)
+protein shake: protein powder, banana, milk (400ml)
 
 overnight oats: chia seeds (3.3g), rolled oats (45g), yogurt (116.7g), milk (118.3ml), protein powder
 
@@ -64,3 +110,7 @@ bagel with creme cheese and ham: bagel, creme cheese (40g), ham (50g)
 bagel with creme cheese and pastirma: bagel, creme cheese (33g), pastirma (35g)
 
 baked salmon: salmon (333g), dijon (7.4ml), olive oil (2.5ml)
+
+chili (2477g): olive oil, onion, ground beef (907g), garlic clove, ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree, romano beans (709.8ml)
+
+pumpkin cream soup (2256g): pumpkin (698g), carrot (98g), potato (485g), garlic clove (x10), onion (139g), chicken stock (946ml), butter (50g)

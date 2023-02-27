@@ -16,7 +16,7 @@ class Ingredient {
 
 public:
 
-	int cal;
+	double cal;
 
 	double carbs, protein, fat;
 
@@ -24,7 +24,7 @@ public:
 
 	Ingredient();
 
-	Ingredient(string name, int cal, double protein, double carbs, double fat, string proportion);
+	Ingredient(string name, double cal, double protein, double carbs, double fat, string proportion);
 
 	Ingredient(const Ingredient& copy);
 
@@ -38,7 +38,7 @@ public:
 
 	string name, proportion; //proportion only in grams
 
-	int cal;
+	double cal;
 
 	double carbs, protein, fat;
 
@@ -48,7 +48,7 @@ public:
 
 	Meal(string name, vector<Ingredient> ingredientList, string proportion);
 
-	Meal(string name, vector<Ingredient> ingredientList, int cal, double protein, double carbs, double fat, string proportion);
+	Meal(string name, vector<Ingredient> ingredientList, double cal, double protein, double carbs, double fat, string proportion);
 
 	friend ostream& operator << (ostream& out, const Meal& meal);
 

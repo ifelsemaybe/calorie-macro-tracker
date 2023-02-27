@@ -25,7 +25,7 @@ string myRound(double d, int decimalPlace) {
 
 Ingredient::Ingredient() {}
 
-Ingredient::Ingredient(string name, int cal, double protein, double carbs, double fat, string proportion) {
+Ingredient::Ingredient(string name, double cal, double protein, double carbs, double fat, string proportion) {
 
 	this->name = name;
 	this->cal = cal;
@@ -49,7 +49,7 @@ Ingredient::Ingredient(const Ingredient& copy) {
 
 ostream& operator << (ostream& out, const Ingredient& ing) {
 
-	out << ing.name + ": calories[" + to_string(ing.cal) + "] protein(" + myRound(ing.protein,1) + ") carbs(" + myRound(ing.carbs,1) + ") fat(" + myRound(ing.fat,1) + ")\n\n";
+	out << ing.name + ": calories[" + myRound(ing.cal, 0) + "] protein(" + myRound(ing.protein,1) + ") carbs(" + myRound(ing.carbs,1) + ") fat(" + myRound(ing.fat,1) + ")\n\n";
 
 	return out;
 
@@ -72,7 +72,7 @@ Meal::Meal(string name, vector<Ingredient> ingredientList, string proportion) {
 
 }
 
-Meal::Meal(string name, vector<Ingredient> ingredientList, int cal, double protein, double carbs, double fat, string proportion) {
+Meal::Meal(string name, vector<Ingredient> ingredientList, double cal, double protein, double carbs, double fat, string proportion) {
 
 	this->name = name;
 	this->ingredientList = ingredientList;
@@ -86,7 +86,7 @@ Meal::Meal(string name, vector<Ingredient> ingredientList, int cal, double prote
 
 ostream& operator << (ostream& out, const Meal& meal) {
 
-	out << meal.name + ": calories[" + to_string(meal.cal) + "] protein(" + myRound(meal.protein, 1) + ") carbs(" + myRound(meal.carbs, 1) + ") fat(" + myRound(meal.fat, 1) + ")\n\n";
+	out << meal.name + ": calories[" + myRound(meal.cal, 0) + "] protein(" + myRound(meal.protein, 1) + ") carbs(" + myRound(meal.carbs, 1) + ") fat(" + myRound(meal.fat, 1) + ")\n\n";
 
 	out << "List of Ingredients: \n\n";
 
@@ -398,10 +398,6 @@ void Tracker::inputMeal() {
 
 	string name, name_;
 
-	int cal = 0;
-
-	double carbs = 0, protein = 0, fat = 0;
-
 	string proportion; //proportion for ingredients
 
 	string proportion_Meal;
@@ -466,11 +462,13 @@ void Tracker::inputMeal() {
 
 	}
 
+	cout << "\n" << endl;
+
 	mealList[name] = m;
 
 	string input;
 
-	if (m.ingredientList[0].proportion == "null" || m.ingredientList[0].proportion == "") {
+	if (m.ingredientList[0].proportion == allIngredients[m.ingredientList[0].name].proportion) {
 
 		if (m.proportion == "null") {
 
@@ -505,7 +503,7 @@ void Tracker::inputMeal() {
 	
 	for (int i = 1; i < m.ingredientList.size(); i++) {
 
-		if (m.ingredientList[i].proportion == "null" || m.ingredientList[i].proportion == "") {
+		if (m.ingredientList[i].proportion == allIngredients[m.ingredientList[i].name].proportion) {
 
 			input += ", " + m.ingredientList[i].name;
 		}
@@ -531,7 +529,7 @@ void Tracker::track() {
 
 	string answer, name, proportion;
 
-	int cal = 0;
+	double cal = 0;
 
 	double protein = 0, carbs = 0, fat = 0;
 
@@ -737,13 +735,15 @@ void Tracker::track() {
 
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+					cout << "\n" << endl;
+
 					//handle exception if its not in grams
 
 					//handle exception where original meal doesn't have a proportion, so either = null or = ""
 
 					double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(m.proportion.substr(0, m.proportion.find("g")));
 
-					int cal = 0;
+					double cal = 0;
 
 					double carbs = 0, protein = 0, fat = 0;
 
@@ -818,7 +818,7 @@ void Tracker::track() {
 	}
 
 
-	cout << "\n\nTotal: " << cal << " cal (" << protein << "g/" << carbs << "g/" << fat << "g)\n\n";
+	cout << "Total: " << myRound(cal,0) << " cal (" << myRound(protein, 1) << "g/" << myRound(carbs, 1) << "g/" << myRound(fat, 1) << "g)\n\n\n\n\n\n";
 
 
 }
@@ -909,7 +909,7 @@ void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion
 
 		}
 
-		double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(ing.proportion.substr(0, proportion.find("g")));
+		double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(ing.proportion.substr(0, ing.proportion.find("g")));
 
 		ing.cal *= ratio;
 		ing.protein *= ratio;
@@ -930,7 +930,7 @@ void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion
 
 		}
 
-		double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(ing.proportion.substr(0, proportion.find("ml")));
+		double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(ing.proportion.substr(0, ing.proportion.find("ml")));
 
 		ing.cal *= ratio;
 		ing.protein *= ratio;
