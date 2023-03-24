@@ -2,39 +2,39 @@
 
 Ingredients:
 
-protein powder: 130 cal (25g/2g/2.5g)
+protein powder: 120 cal (25g/2g/1g)
 
 butter: 70 cal (0.1g/0g/8g) (10g)
 
 milk: 90 cal (9g/13g/0g) (250ml)
 
-creme cheese: 70 cal (2g/3g/6g) (30g)
+cream cheese: 70 cal (2g/3g/6g) (30g)
 
 bagel: 180 cal (6.2g/32g/1.4g)
 
 croissant: 272 cal (5.5g/31g/14g)
 
-chicken breast(1/4): 386 cal (58g/0g/15.2g)
+chicken breast: 197 cal (29.8g/0g/7.8g) (100g)
 
-chicken leg(1/4): 321 cal (34g/0g/20.3g)
+chicken leg: 321 cal (24g/0g/9g) (100g)
 
 banana: 105 cal (1.3g/27g/0.4g)
 
-apple: 95 cal (0.5g/25g/0.3g)
+apple: 95 cal (0.5g/25g/0.3g) (182g)
 
-orange: 69 cal (1.3g/18g/0.2g)
+orange: 69 cal (1.3g/18g/0.2g) (140g)
 
 kiwis: 84 cal (1.6g/20g/0.8g) (x2)
 
-tangerines: 84 cal (1.4g/24g/0.6g) (x2)
+tangerine: 84 cal (1.4g/24g/0.6g) (176g)
 
-yogurt: 140 cal (6g/7g/10g) (175g)
+yogurt: 100 cal (6g/11g/3g) (175g)
 
 fried egg: 90 cal (6.3g/0.4g/6.8g)
 
 ham: 186 cal (30g/1.4g/6.8g) (134g)
 
-rolled oats: 110 cal (4g/20g/2g) (30g)
+rolled oats: 110 cal (6g/23g/2.5g) (35g)
 
 chia seeds: 70 cal (2g/6g/4.5g) (15g)
 
@@ -98,6 +98,56 @@ chicken stock: 15 cal (3g/1g/0g) (250ml)
 
 carrot: 16 cal (0.4g/3.8g/0.1g) (46g)
 
+deli ham: 60 cal (10g/1g/1.5g) (56g)
+
+ground turkey: 120 cal (19g/0g/5g) (100g)
+
+lettuce: 16 cal (1.2g/3.1g/0.3g) (94g)
+
+avocado: 322 cal (4g/17g/29g) (201g)
+
+radish: 2 cal (0.1g/0.5g/0g) (13.5g)
+
+cucumber: 30 cal (1.3g/7.3g/0.2g) (201g)
+
+tuna: 111 cal (25g/0g/0.5g) (85g)
+
+asparagus: 17 cal (1.8g/3.1g/0.2g) (75g)
+
+cooking cream: 101 cal (0.9g/0.8g/11g) (30g)
+
+duck: 160 cal (25g/0g/7g) (100g)
+
+sake: 39 cal (0.1g/1.4g/0g) (29.6ml)
+
+mango: 202 cal (2.8g/50g/1.3g) (336g)
+
+pizza: 285 cal (12g/36g/10g) (107g)
+
+ayran: 140 cal (8g/11g/5g) (473ml)
+
+tortilla: 90 cal (4g/19g/3g) (41g)
+
+duck fat: 113 cal (0g/0g/13g) (13g)
+
+red cabbage: 44 cal (2.3g/10g/0.1g) (150g)
+
+pork shoulder: 394 cal (31g/0g/29g) (135g)
+
+tomato: 22 cal (1.1g/4.8g/0.3g) (123g)
+
+pear: 101 cal (0.6g/27g/0.3g) (178g)
+
+tiramisu: 572 cal (8.3g/35g/44g) (174g)
+
+pork shank: 197 cal (22g/0g/11g) (85g)
+
+red pepper: 32 cal (1g/7.6g/0.2g) (114g)
+
+protein bar: 250 cal (10g/43g/6g)
+
+chicken penne alfredo: 310 cal (17g/23g/17g) (195g)
+
 
 Meals:
 
@@ -105,12 +155,18 @@ protein shake: protein powder, banana, milk (400ml)
 
 overnight oats: chia seeds (3.3g), rolled oats (45g), yogurt (116.7g), milk (118.3ml), protein powder
 
-bagel with creme cheese and ham: bagel, creme cheese (40g), ham (50g)
+bagel with cream cheese and ham: bagel, cream cheese (40g), ham (50g)
 
-bagel with creme cheese and pastirma: bagel, creme cheese (33g), pastirma (35g)
+bagel with cream cheese and pastirma: bagel, cream cheese (33g), pastirma (35g)
 
 baked salmon: salmon (333g), dijon (7.4ml), olive oil (2.5ml)
 
-chili (2477g): olive oil, onion, ground beef (907g), garlic clove, ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree, romano beans (709.8ml)
+chili (2723g): olive oil, onion, ground turkey (907g), garlic clove, ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree, romano beans (709.8ml)
 
 pumpkin cream soup (2256g): pumpkin (698g), carrot (98g), potato (485g), garlic clove (x10), onion (139g), chicken stock (946ml), butter (50g)
+
+pork with cabbage and rice (2504.4g): pork shoulder (851g), red cabbage (958g), duck fat (51g), olive oil (51g), carrot (93.4g), white rice (500g)
+
+bean soup (4038g): romano beans (709.8ml), onion (200g), carrot (350g), red pepper (225g), pork shank (310g), tomato (230g)
+
+mashed potato (1012.7g): potato (850.4g), butter (113g), milk (118.3ml)

@@ -1,6 +1,16 @@
 #include "Calorie_Macro_Tracker.h"
 
+string getTime() {
 
+	time_t t = time(NULL);
+
+	struct tm time;
+	
+	localtime_s(&time, &t); // for windows use
+
+	return to_string(time.tm_mon + 1) + "/" + to_string(time.tm_mday) + "/" + to_string(1900 + time.tm_year);
+
+}
 
 
 string myRound(double d, int decimalPlace) {
@@ -100,6 +110,23 @@ ostream& operator << (ostream& out, const Meal& meal) {
 
 	return out;
 
+}
+
+ostream& operator << (ostream& out, const Day& day) {
+
+	out << "Breakfast: \n\n";
+
+	out << "calories[" + myRound(day.caloricBreakfast, 0) + "] protein(" + myRound(day.proteinBreakfast, 1) + ") carbs(" + myRound(day.carbBreakfast, 1) + ") fat(" + myRound(day.fatBreakfast, 1) + ")\n\n";
+
+	out << "Lunch: \n\n";
+
+	out << "calories[" + myRound(day.caloricLunch, 0) + "] protein(" + myRound(day.proteinLunch, 1) + ") carbs(" + myRound(day.carbLunch, 1) + ") fat(" + myRound(day.fatLunch, 1) + ")\n\n";
+
+	out << "Dinner: \n\n";
+
+	out << "calories[" + myRound(day.caloricDinner, 0) + "] protein(" + myRound(day.proteinDinner, 1) + ") carbs(" + myRound(day.carbDinner, 1) + ") fat(" + myRound(day.fatDinner, 1) + ")\n\n";
+
+	return out;
 }
 
 void Tracker::readStats() {
@@ -290,7 +317,7 @@ void Tracker::inputIngredient() {
 	string input;
 
 	string name;
-	int calories;
+	double calories;
 
 	double protein, carbs, fat;
 		
@@ -335,9 +362,9 @@ void Tracker::inputIngredient() {
 
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-	if (proportion == "null") {
+	if (proportion == "null" || proportion == "n") {
 
-		input = name + ": " + to_string(calories) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
+		input = name + ": " + myRound(calories, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
 		
 		allIngredients[name] = Ingredient(name, calories, protein, carbs, fat, "");
 
@@ -363,7 +390,7 @@ void Tracker::inputIngredient() {
 
 		}
 
-		input = name + ": " + to_string(calories) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
+		input = name + ": " + myRound(calories, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
 
 		allIngredients[name] = Ingredient(name, calories, protein, carbs, fat, proportion);
 	}
@@ -529,6 +556,8 @@ void Tracker::track() {
 
 	string answer, name, proportion;
 
+	string foods;
+
 	double cal = 0;
 
 	double protein = 0, carbs = 0, fat = 0;
@@ -561,13 +590,15 @@ void Tracker::track() {
 
 			cout << "\n" << endl;
 
-			if (proportion == "null") {
+			if (proportion == "null" || proportion == "n"){
 
 				cal += allIngredients[name].cal;
 
 				protein += allIngredients[name].protein;
 				carbs += allIngredients[name].carbs;
 				fat += allIngredients[name].fat;
+
+				foods += displayFood(name, allIngredients[name].cal, allIngredients[name].protein, allIngredients[name].carbs, allIngredients[name].fat, proportion) + " - ";
 
 			}
 
@@ -577,21 +608,43 @@ void Tracker::track() {
 
 					if (allIngredients[name].proportion[0] == 'x') {
 
-						double new_proportion = stod(proportion.substr(1)) / stod(allIngredients[name].proportion.substr(1));
+						double ratio = stod(proportion.substr(1)) / stod(allIngredients[name].proportion.substr(1));
 
-						cal += (allIngredients[name].cal * new_proportion);
-						protein += (allIngredients[name].protein * new_proportion);
-						carbs += (allIngredients[name].carbs * new_proportion);
-						fat += (allIngredients[name].fat * new_proportion);
+						cal += (allIngredients[name].cal * ratio);
+						protein += (allIngredients[name].protein * ratio);
+						carbs += (allIngredients[name].carbs * ratio);
+						fat += (allIngredients[name].fat * ratio);
+
+						foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
 
 					}
 
 					else {
 
-						cal += (allIngredients[name].cal * stod(proportion.substr(1)));
-						protein += (allIngredients[name].protein * stod(proportion.substr(1)));
-						carbs += (allIngredients[name].carbs * stod(proportion.substr(1)));
-						fat += (allIngredients[name].fat * stod(proportion.substr(1)));
+						double ratio = stod(proportion.substr(1));
+
+						cal += (allIngredients[name].cal * ratio);
+						protein += (allIngredients[name].protein * ratio);
+						carbs += (allIngredients[name].carbs * ratio);
+						fat += (allIngredients[name].fat * ratio);
+
+						if (allIngredients[name].proportion.find("g") != -1) {
+
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, to_string(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g"))) * ratio)) + " - ";
+
+						}
+
+						else if (allIngredients[name].proportion.find("ml") != -1) {
+
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, to_string(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml"))) * ratio)) + " - ";
+
+						}
+
+						else {
+
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
+
+						}
 
 					}
 				}
@@ -600,23 +653,27 @@ void Tracker::track() {
 
 					//if there's a mismatch in proportion mesures throw error 
 
-					double new_proportion = stod(proportion.substr(0, proportion.find("g"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g")));
+					double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g")));
 
-					cal += (allIngredients[name].cal * new_proportion);
-					protein += (allIngredients[name].protein * new_proportion);
-					carbs += (allIngredients[name].carbs * new_proportion);
-					fat += (allIngredients[name].fat * new_proportion);
+					cal += (allIngredients[name].cal * ratio);
+					protein += (allIngredients[name].protein * ratio);
+					carbs += (allIngredients[name].carbs * ratio);
+					fat += (allIngredients[name].fat * ratio);
+
+					foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
 
 				}
 
 				else {
 
-					double new_proportion = stod(proportion.substr(0, proportion.find("ml"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml")));
+					double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml")));
 
-					cal += (allIngredients[name].cal * new_proportion);
-					protein += (allIngredients[name].protein * new_proportion);
-					carbs += (allIngredients[name].carbs * new_proportion);
-					fat += (allIngredients[name].fat * new_proportion);
+					cal += (allIngredients[name].cal * ratio);
+					protein += (allIngredients[name].protein * ratio);
+					carbs += (allIngredients[name].carbs * ratio);
+					fat += (allIngredients[name].fat * ratio);
+
+					foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
 
 				}
 
@@ -793,6 +850,8 @@ void Tracker::track() {
 
 				else if (answer == "exit" || "e") {
 
+					foods += displayFood(m.name, m.cal, m.protein, m.carbs, m.fat, m.proportion) + " - ";
+
 					exit = true;
 					continue;
 				}
@@ -818,8 +877,241 @@ void Tracker::track() {
 	}
 
 
-	cout << "Total: " << myRound(cal,0) << " cal (" << myRound(protein, 1) << "g/" << myRound(carbs, 1) << "g/" << myRound(fat, 1) << "g)\n\n\n\n\n\n";
+	cout << "Total: " << myRound(cal,0) << " cal (" << myRound(protein, 1) << "g/" << myRound(carbs, 1) << "g/" << myRound(fat, 1) << "g)\n\n\n";
 
+	
+	cout << "Where do you want these values to be saved at? ";
+
+	cin >> answer;
+
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	cout << "\n" << endl;
+
+	if (answer == "b" || answer == "breakfast") {
+
+		d.caloricBreakfast += cal;
+
+		d.proteinBreakfast += protein;
+		d.carbBreakfast += carbs;
+		d.fatBreakfast += fat;
+
+		if (d.weight == 0) {
+
+			cout << "What is your weight? ";
+
+			cin >> d.weight;
+
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+			cout << "\n" << endl;
+		}
+
+		d.foodsBreakfast += foods;
+
+		d.date = getTime();
+
+	}
+
+	else if (answer == "l" || answer == "lunch") {
+
+		d.caloricLunch += cal;
+
+		d.proteinLunch += protein;
+		d.carbLunch += carbs;
+		d.fatLunch += fat;
+
+		d.foodsLunch += foods;
+
+	}
+
+	else if (answer == "d" || answer == "dinner") {
+
+		d.caloricDinner += cal;
+
+		d.proteinDinner += protein;
+		d.carbDinner += carbs;
+		d.fatDinner += fat;
+
+		d.foodsDinner += foods;
+
+		cout << "Do you want to log the day? ";
+
+		cin >> answer;
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		cout << "\n" << endl;
+
+		if (answer == "y" || answer == "yes") {
+
+			ifstream ifile("log.txt");
+
+			ofstream ofile("log.txt", ios::app);
+
+			double cal = 0;
+
+			double protein = 0;
+			double carbs = 0;
+			double fat = 0;
+
+			double weight = 0;
+
+			d.foodsBreakfast = d.foodsBreakfast.substr(0, d.foodsBreakfast.size() - 3) + "]";
+
+			d.foodsLunch = d.foodsLunch.substr(0, d.foodsLunch.size() - 3) + "]";
+
+			d.foodsDinner = d.foodsDinner.substr(0, d.foodsDinner.size() - 3) + "]";
+
+			string line;
+
+			if (!ifile.is_open()) {
+
+				cout << "Unable to open file";
+			}
+
+			while (getline(ifile, line)) {
+
+				if (line.find("Week") != -1 && line.find("average") == -1) {
+
+					l.currentWeek++;
+
+				}
+
+				if (line.find("average") != -1) {
+
+					l.currentDay = 1;
+
+					cal = 0;
+					protein = 0;
+					carbs = 0;
+					fat = 0;
+					weight = 0;
+
+				}
+
+				if (line.find("Day") != -1) {
+
+					l.currentDay++;
+
+				}
+
+				if (line.find("Total") != -1) {
+
+					line.erase(0, line.find(":") + 2);
+
+					cal += stod(line.substr(0, line.find(" ")));
+
+					line.erase(0, line.find("(") + 1);
+
+					protein += stod(line.substr(0, line.find("g")));
+
+					line.erase(0, line.find("/") + 1);
+
+					carbs += stod(line.substr(0, line.find("g")));
+
+					line.erase(0, line.find("/") + 1);
+
+					fat += stod(line.substr(0, line.find("g")));
+
+				}
+
+				if (line.find("Weight") != -1) {
+
+					line.erase(0, line.find(" ") + 1);
+
+					weight += stod(line.substr(0, line.find(" kg")));
+
+				}
+
+			}
+
+			if (l.currentDay == 7) {
+
+				l.appendEndofWeek = true;
+
+			}
+
+			else if (l.currentDay == 1) {
+
+				l.appendNewWeek = true;
+			}
+
+
+
+			if (l.appendNewWeek) {
+
+
+				l.to_log += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nWeek " + to_string(l.currentWeek) + "\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n\n\n";
+
+			}
+
+			l.to_log += "Day " + to_string(l.currentDay) + " (" + d.date + "):\n------------------\n\n\n\tBreakfast: " + myRound(d.caloricBreakfast, 0) + " cal (" + myRound(d.proteinBreakfast, 1) + "g/" + myRound(d.carbBreakfast, 1) + "g/" + myRound(d.fatBreakfast, 1) + "g)\n\n" + d.foodsBreakfast + "\n\n\n\tLunch: " + myRound(d.caloricLunch, 0) + " cal (" + myRound(d.proteinLunch, 1) + "g/" + myRound(d.carbLunch, 1) + "g/" + myRound(d.fatLunch, 1) + "g)\n\n" + d.foodsLunch + "\n\n\n\tDinner: " + myRound(d.caloricDinner, 0) + " cal (" + myRound(d.proteinDinner, 1) + "g/" + myRound(d.carbDinner, 1) + "g/" + myRound(d.fatDinner, 1) + "g)\n\n" + d.foodsDinner + "\n\n\n\nTotal: " + myRound(d.caloricBreakfast + d.caloricLunch + d.caloricDinner, 0) + " cal (" + myRound(d.proteinBreakfast + d.proteinLunch + d.proteinDinner, 1) + "g/" + myRound(d.carbBreakfast + d.carbLunch + d.carbDinner, 1) + "g/" + myRound(d.fatBreakfast + d.fatLunch + d.fatDinner, 1) + "g)\n\nWeight: " + myRound(d.weight, 2) + " kg\n\n\n\n";
+
+
+			if (l.appendEndofWeek) {
+
+				cal += stod(myRound(d.caloricBreakfast + d.caloricDinner + d.caloricLunch, 0));
+
+				double cal_avg = cal / 7;
+
+				protein += stod(myRound(d.proteinBreakfast + d.proteinDinner + d.proteinLunch, 1));
+				carbs += stod(myRound(d.carbBreakfast + d.carbDinner + d.carbLunch, 1));
+				fat += stod(myRound(d.fatBreakfast + d.fatDinner + d.fatLunch, 1));
+
+				double protein_avg = protein / 7;
+				double carbs_avg = carbs / 7;
+				double fat_avg = fat / 7;
+
+				weight += stod(myRound(d.weight, 2));
+
+				double weight_avg = weight / 7;
+
+				l.to_log += "Week's average:\n\n\n\tCalories/Macros: " + myRound(cal_avg, 0) + " cal (" + myRound(protein_avg, 1) + "g/" + myRound(carbs_avg, 1) + "g/" + myRound(fat_avg, 0) + "g)\n\n\tWeight: " + myRound(weight_avg, 2) + " kg\n\n\n";
+
+			}
+
+			ofile << l.to_log;
+
+			d.caloricBreakfast = 0;
+			d.caloricDinner = 0;
+			d.caloricLunch = 0;
+
+			d.carbBreakfast = 0;
+			d.carbDinner = 0;
+			d.carbLunch = 0;
+
+			d.fatBreakfast = 0;
+			d.fatDinner = 0;
+			d.fatLunch = 0;
+
+			d.proteinBreakfast = 0;
+			d.proteinDinner = 0;
+			d.proteinLunch = 0;
+
+			d.weight = 0;
+
+			d.foodsBreakfast = "[Foods ==> ";
+			d.foodsLunch = "[Foods ==> ";
+			d.foodsDinner = "[Foods ==> ";
+
+			ifile.close();
+			ofile.close();
+
+		}
+
+	}
+
+	ofstream ofs("day_saved.txt");
+
+	{
+
+		text_oarchive oa(ofs);
+		oa << d;
+
+	}
+
+	ofs.close();
 
 }
 
@@ -838,6 +1130,24 @@ void Tracker::debug() {
 		cout << el.second;
 
 	}
+
+	cout << "\n\n\n\n";
+
+	cout << d;
+
+	cout << "\n\n\n\n";
+
+}
+
+string Tracker::displayFood(string name, double cal, double protein, double carbs, double fat, string proportion) {
+
+	if (proportion == "null" || proportion == "n" || proportion == "") {
+
+		return name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
+
+	}
+
+	return name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
 
 }
 

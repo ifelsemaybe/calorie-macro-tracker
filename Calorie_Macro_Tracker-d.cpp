@@ -10,6 +10,22 @@ int main() {
 
 	bool exit = false;
 
+	ifstream file = ifstream("day_saved.txt");
+
+	if (file.peek() != ifstream::traits_type::eof()) {
+
+		{
+
+			text_iarchive ia(file);
+
+			ia >> t.d;
+
+		}
+
+	}
+
+	file.close();
+
 	while (!exit) {
 
 		cout << "What do you want to do? ";
