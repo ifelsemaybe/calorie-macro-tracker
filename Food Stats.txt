@@ -24,11 +24,11 @@ apple: 95 cal (0.5g/25g/0.3g) (182g)
 
 orange: 69 cal (1.3g/18g/0.2g) (140g)
 
-kiwis: 84 cal (1.6g/20g/0.8g) (x2)
+kiwi: 84 cal (1.6g/20g/0.8g) (138g)
 
 tangerine: 84 cal (1.4g/24g/0.6g) (176g)
 
-yogurt: 100 cal (6g/11g/3g) (175g)
+yogurt: 140 cal (10g/7g/6g) (175g)
 
 fried egg: 90 cal (6.3g/0.4g/6.8g)
 
@@ -74,7 +74,7 @@ corona: 148 cal (0g/14g/0g) (330ml)
 
 cocoa powder: 20 cal (1g/3g/0.5g) (14.8ml)
 
-romano beans: 170 cal (11g/29g/0.5g) (59.2ml)
+romano beans: 170 cal (11g/29g/0.5g) (0.25cup)
 
 bread: 77 cal (2.6g/14g/1g) (29g)
 
@@ -114,7 +114,7 @@ tuna: 111 cal (25g/0g/0.5g) (85g)
 
 asparagus: 17 cal (1.8g/3.1g/0.2g) (75g)
 
-cooking cream: 101 cal (0.9g/0.8g/11g) (30g)
+cooking cream: 50 cal (0.3g/0g/5g) (15ml)
 
 duck: 160 cal (25g/0g/7g) (100g)
 
@@ -148,6 +148,166 @@ protein bar: 250 cal (10g/43g/6g)
 
 chicken penne alfredo: 310 cal (17g/23g/17g) (195g)
 
+perch: 199 cal (42g/0g/2g) (170g)
+
+macaron - salted caramel: 100 cal (2g/13g/4.5g)
+
+macaron - raspberry: 90 cal (2g/15g/3g)
+
+macaron - mandarin: 90 cal (2g/14g/3g)
+
+birria tacos: 626 cal (61g/31.8g/17.4g) (x3)
+
+mozzarella: 85 cal (6.3g/0.6g/6.3g) (28g)
+
+horchata: 42 cal (0.1g/10.5g/0g) (100ml)
+
+tortilla chip: 14 cal (0.2g/2g/0.6g) (3g)
+
+celery root: 66 cal (2.3g/14g/0.5g) (156g)
+
+ground pork: 230 cal (19g/0g/17g) (100g)
+
+parsley: 14 cal (1.1g/2.4g/0.3g) (38g)
+
+tomato sauce: 29 cal (1.5g/6.5g/0.4g) (123g)
+
+milk (3.25%): 160 cal (8g/12g/8g) (250ml)
+
+white flour[ml]: 455 cal (13g/95g/1.2g) (236.6ml)
+
+white flour[g]: 455 cal (13g/95g/1.2g) (125g)
+
+egg: 72 cal (6.3g/0.4g/4.8g)
+
+astro fruit yogurt: 90 cal (3g/12g/4g)
+
+pork tenderloin: 125 cal (22g/0g/3.4g) (85g)
+
+garlic: 18 cal (0.8g/4g/0.1g) (12g)
+
+shallot: 31 cal (1.1g/7.1g/0g) (43g)
+
+mushroom: 7 cal (0.5g/1.3g/0.1g) (24g)
+
+parmesan: 21 cal (1.4g/0.7g/1.2g) (14.9ml)
+
+oregano: 8 cal (0.3g/2.1g/0.1g) (14.9ml)
+
+boustan pita poulet: 430 cal (40g/16g/21.5g) (232g)
+
+baklava: 130 cal (2g/14g/7g) (25g)
+
+uncooked rice: 716 cal (13g/158g/1g) (200g)
+
+pita bread: 165 cal (5.5g/33g/0.7g) (60g)
+
+grape leaf: 3 cal (0.2g/0.5g/0.1g) (4g)
+
+mustard: 1 cal (0.2g/0g/0g) (5ml)
+
+keto bomb: 70 cal (1g/9g/7g)
+
+humus: 100 cal (4.7g/8.6g/5.8g) (60g)
+
+noodles: 196 cal (7.2g/38g/1.2g) (124g)
+
+yolk: 55 cal (2.7g/0.6g/4.5g)
+
+double chocolate ice cream: 130 cal (3g/18g/6g) (125ml)
+
+sugar: 16 cal (0g/4.2g/0g) (4.9ml)
+
+pork fat: 115 cal (0g/0g/13g) (14.8ml)
+
+black beans: 227 cal (15g/41g/0.9g) (236.6ml)
+
+serrano: 4 cal (0.2g/0.8g/0.1g) (12.2g)
+
+labaguetterie bread: 260 cal (9g/54g/1.5g) (107g)
+
+haagen-daz oreo: 220 cal (3g/19g/15g)
+
+caramel popcorn werther's original: 230 cal (1g/40g/7g) (50g)
+
+builder bar: 250 cal (10g/43g/6g)
+
+cozonac: 298 cal (8.3g/45.5g/8.4g) (100g)
+
+chocolate with rice crispies: 210 cal (2g/25g/12g) (x10)
+
+chicken chow mein kirkland: 560 cal (31g/71g/17g) (323g)
+
+boiled egg: 78 cal (6.3g/0.6g/5.3g)
+
+lamb fat: 91 cal (1g/0g/7g) (14g)
+
+lamb: 250 cal (21g/0g/18g) (85g)
+
+swiss chard: 35 cal (3.3g/7.2g/0.1g) (175g)
+
+mint leaf: 5 cal (0.4g/1g/0.1g) (11g)
+
+scallion: 5 cal (0.3g/1.1g/0g) (15g)
+
+hot sauce: 20 cal (0.1g/0g/2.5g) (4.9ml)
+
+stinging nettle: 37 cal (2.4g/6.7g/0.1g) (236.6ml)
+
+feta cheese: 75 cal (4g/1.2g/6g) (28g)
+
+wonton soup: 71 cal (4.6g/12g/0.6g) (223g)
+
+beef: 220 cal (22g/0g/14g) (85g)
+
+fried rice: 238 cal (5.5g/45g/4.1g) (137g)
+
+gyro: 723 cal (47g/43g/39g)
+
+rye bread: 83 cal (2.7g/15g/1.1g) (32g)
+
+polish sausage: 127 cal (7.3g/2.2g/9.9g) (56g)
+
+builder bar - peanut butter: 260 cal (11g/40g/8g)
+
+haagen-daz salted caramel: 260 cal (3g/23g/17g)
+
+kirkland garlic bread: 190 cal (4g/25g/9g) (57g)
+
+medenka: 446 cal (4.6g/67.3g/17.6g) (100g)
+
+lime and mint ice cream: 120 cal (0g/29g/0.3g) (100g)
+
+coconut cookies: 160 cal (2g/26g/6g) (34g)
+
+marinara: 66 cal (1.8g/9.8g/2.1g) (132g)
+
+cheddar: 120 cal (7g/1g/9g) (30g)
+
+fontina: 110 cal (7g/1g/9g) (30g)
+
+gruyere: 120 cal (8g/0g/10g) (30g)
+
+whole grain dijon: 10 cal (0.4g/1g/0.5g) (5ml)
+
+macaroni: 310 cal (12g/60g/1.5g) (85g)
+
+coconut ice cream: 230 cal (5g/15g/24g) (92g)
+
+lukanka: 401 cal (26g/1.3g/32g) (100g)
+
+pork chop: 328 cal (40g/0g/17g) (157g)
+
+potato salad: 358 cal (6.7g/28g/21g) (250g)
+
+raspberry and lime ice cream: 130 cal (0.3g/33g/0.4g) (106g)
+
+banitsa crust: 289 cal (10g/58g/1.4g) (100g)
+
+burrito: 434 cal (17g/56g/16g) (241g)
+
+duck leg: 160 cal (25g/0g/7g) (100g)
+
 
 Meals:
 
@@ -159,14 +319,42 @@ bagel with cream cheese and ham: bagel, cream cheese (40g), ham (50g)
 
 bagel with cream cheese and pastirma: bagel, cream cheese (33g), pastirma (35g)
 
-baked salmon: salmon (333g), dijon (7.4ml), olive oil (2.5ml)
+baked salmon: salmon (333g), mustard (7.4ml), olive oil (2.5ml)
 
-chili (2723g): olive oil, onion, ground turkey (907g), garlic clove, ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree, romano beans (709.8ml)
+chili (2255g): olive oil, onion (184.2g), ground turkey (907g), garlic (17.7g), ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree (1.7cup), black beans (3cup), red pepper (165.2g), serrano (82.6g)
 
 pumpkin cream soup (2256g): pumpkin (698g), carrot (98g), potato (485g), garlic clove (x10), onion (139g), chicken stock (946ml), butter (50g)
 
 pork with cabbage and rice (2504.4g): pork shoulder (851g), red cabbage (958g), duck fat (51g), olive oil (51g), carrot (93.4g), white rice (500g)
 
-bean soup (4038g): romano beans (709.8ml), onion (200g), carrot (350g), red pepper (225g), pork shank (310g), tomato (230g)
+bean soup (4365.8g): romano beans (3cup), onion (200g), carrot (350g), red pepper (225g), tomato (230g)
 
 mashed potato (1012.7g): potato (850.4g), butter (113g), milk (118.3ml)
+
+perch with olive oil and butter (927.6g): perch (903.4g), olive oil (10g), butter (14.2g)
+
+potatos with olive oil and butter (977.1g): potato (930.1g), olive oil (19.8g), butter (27.2g)
+
+moussaka (3423g): egg (x2), milk (3.25%) (473.2ml), white flour[ml] (29.6ml), olive oil (40ml), carrot (209.1g), celery root (46g), red pepper (147g), onion (166.6g), ground beef (623.1g), ground pork (500g), potato (1454.8g), parsley, tomato sauce (369g), chicken stock
+
+seared pork tenderloin (793.4g): pork tenderloin (793.4g), olive oil (29.6ml)
+
+rice with sake (640.6g): white rice (640.6g), sake (100g)
+
+mushroom sauce (365.8g): garlic (15.2g), shallot (67.6g), mushroom, butter (26.8g), parsley (52.2g), chicken stock, parmesan (78.9ml), oregano, cooking cream (78.9ml)
+
+serma without grape leaves (3227.7g): ground beef (623.1g), ground pork (500g), uncooked rice (473.2g), onion (376g), olive oil (50g), chicken stock (946ml)
+
+chicken soup (3578g): red pepper (91g), onion (100g), carrot (200g), white flour[g] (18g), potato (550g), noodles (50g), uncooked rice (15g), butter (50g), yolk, cooking cream (20g), chicken stock (946ml)
+
+kurabiki (1667.4g): egg (x6), pork fat (200g), sugar (400g), yogurt (197.3g), white flour[g] (1500g)
+
+rice with eggs (3273.2g): scallion (479.6g), uncooked rice (598.2g), mint leaf (23.6g), lamb fat (102.1g), parsley (49.7g), garlic (56.1g), swiss chard (294.9g), chicken stock (946ml), egg (x6), yogurt (123g)
+
+kopriva soup (1195.1g): stinging nettle (59.1ml), onion (60g), white flour[g] (60g), butter (80g), feta cheese (120g), egg (x2)
+
+mac and cheese (2603.6g): mozzarella (248.5g), fontina (176.6g), parmesan (144.3g), gruyere (147.1g), cheddar (150.7g), butter (56.4g), whole grain dijon (29.6ml), white flour[ml] (59.1ml), milk (946.4ml), macaroni (465.8g)
+
+banitsa (1216g): banitsa crust (400g), yogurt (200g), feta cheese (400g), butter (90g), olive oil (50g), egg (x5)
+
+pancake (1600g): milk (3.25%) (412ml), white flour[g] (500g), egg (x6)

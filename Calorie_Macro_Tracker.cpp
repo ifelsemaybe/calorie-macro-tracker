@@ -33,6 +33,56 @@ string myRound(double d, int decimalPlace) {
 
 }
 
+string toMl(double proportion, string mesure) {
+
+	if (mesure == "tsp") {
+
+		return to_string(proportion * 4.928922) + "ml";
+	}
+
+	else if (mesure == "tbsp") {
+
+		return to_string(proportion * 14.786765) + "ml";
+	}
+
+	else if (mesure == "cup") {
+
+		return to_string(proportion * 236.588236) + "ml";
+
+	}
+
+}
+
+list<string> readFoodStats(list<string> text) {
+
+	ifstream myFile("Food Stats.txt");
+
+	string line;
+
+	while (getline(myFile, line)) {
+
+		if (line.empty()) {
+
+			text.push_back("\n");
+
+		}
+
+		else {
+
+			text.push_back(line + "\n");
+
+		}
+
+	}
+
+	text.back() = line; //so that we remove the "\n" on the last line of the text
+
+	myFile.close();
+
+	return text;
+
+}
+
 Ingredient::Ingredient() {}
 
 Ingredient::Ingredient(string name, double cal, double protein, double carbs, double fat, string proportion) {
@@ -126,6 +176,10 @@ ostream& operator << (ostream& out, const Day& day) {
 
 	out << "calories[" + myRound(day.caloricDinner, 0) + "] protein(" + myRound(day.proteinDinner, 1) + ") carbs(" + myRound(day.carbDinner, 1) + ") fat(" + myRound(day.fatDinner, 1) + ")\n\n";
 
+	out << "Total: \n\n";
+
+	out << "calories[" + myRound(day.caloricBreakfast + day.caloricLunch + day.caloricDinner, 0) + "] protein(" + myRound(day.proteinBreakfast + day.proteinLunch + day.proteinDinner, 1) + ") carbs(" + myRound(day.carbBreakfast + day.carbLunch + day.carbDinner, 1) + ") fat(" + myRound(day.fatBreakfast + day.fatLunch + day.fatDinner, 1) + ")\n\n";
+
 	return out;
 }
 
@@ -140,29 +194,29 @@ void Tracker::readStats() {
 
 	while (getline(myFile, line)) {
 
-		if (line.empty() && emptyx2 == true) { //not sure if this scales well with more \n than 2
+		//if (line.empty() && emptyx2 == true) { //not sure if this scales well with more \n than 2
 
-			text.push_back("\n");
+		//	text.push_back("\n");
 
-			emptyx2 = false;
+		//	emptyx2 = false;
 
-		}
+		//}
 
-		else if (line.empty() && emptyx2 == false) {
+		//else if (line.empty() && emptyx2 == false) {
 
-			text.push_back("\n\n");
+		//	text.push_back("\n\n");
 
-			emptyx2 = true;
+		//	emptyx2 = true;
 
 
-		}
+		//}
 
-		else {
+		//else {
 
-			text.push_back(line);
+		//	text.push_back(line);
 
-			emptyx2 = false;
-		}
+		//	emptyx2 = false;
+		//}
 
 		if (line.empty() || line == "(protein/carbs/fat) (proportion)" || line == "Ingredients:") continue;
 
@@ -176,7 +230,7 @@ void Tracker::readStats() {
 		
 		if (!switch_) {
 
-			lineCount++;
+			lineCount++; //nbr ingredients stored in "Food Stats.txt"
 
 			string name = line.substr(0, line.find(":"));
 
@@ -206,6 +260,23 @@ void Tracker::readStats() {
 
 				proportion = line.substr(0, line.find(")"));
 
+				if (proportion.find("tsp") != -1) {
+
+					proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+				}
+
+				else if (proportion.find("tbsp") != -1) {
+
+					proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+				}
+
+				else if (proportion.find("cup") != -1) {
+
+					proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+				}
+
 			} else proportion = "";
 
 			allIngredients[name] = Ingredient(name, cal, protein, carb, fat, proportion);
@@ -222,6 +293,24 @@ void Tracker::readStats() {
 
 				temp_meal.name = temp.substr(0, temp.find("(") - 1);
 				temp_meal.proportion = temp.substr(temp.find("(") + 1, temp.find(")"));
+
+
+				if (temp_meal.proportion.find("tsp") != -1) {
+
+					temp_meal.proportion = toMl(stod(temp_meal.proportion.substr(0, temp_meal.proportion.find("tsp"))), "tsp");
+				}
+
+				else if (temp_meal.proportion.find("tbsp") != -1) {
+
+					temp_meal.proportion = toMl(stod(temp_meal.proportion.substr(0, temp_meal.proportion.find("tbsp"))), "tbsp");
+
+				}
+
+				else if (temp_meal.proportion.find("cup") != -1) {
+
+					temp_meal.proportion = toMl(stod(temp_meal.proportion.substr(0, temp_meal.proportion.find("cup"))), "cup");
+
+				}
 
 			}
 
@@ -257,6 +346,23 @@ void Tracker::readStats() {
 					line.erase(0, line.find("(") + 1);
 
 					string ingredient_newProportionStr = line.substr(0, line.find(")"));
+
+					if (ingredient_newProportionStr.find("tsp") != -1) {
+
+						ingredient_newProportionStr = toMl(stod(ingredient_newProportionStr.substr(0, ingredient_newProportionStr.find("tsp"))), "tsp");
+					}
+
+					else if (ingredient_newProportionStr.find("tbsp") != -1) {
+
+						ingredient_newProportionStr = toMl(stod(ingredient_newProportionStr.substr(0, ingredient_newProportionStr.find("tbsp"))), "tbsp");
+
+					}
+
+					else if (ingredient_newProportionStr.find("cup") != -1) {
+
+						ingredient_newProportionStr = toMl(stod(ingredient_newProportionStr.substr(0, ingredient_newProportionStr.find("cup"))), "cup");
+
+					}
 
 					if (line.find(",") != -1) {
 
@@ -362,6 +468,25 @@ void Tracker::inputIngredient() {
 
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+
+	if (proportion.find("tsp") != -1) {
+
+		proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+	}
+
+	else if (proportion.find("tbsp") != -1) {
+
+		proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+	}
+
+	else if (proportion.find("cup") != -1) {
+
+		proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+	}
+
+
 	if (proportion == "null" || proportion == "n") {
 
 		input = name + ": " + myRound(calories, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
@@ -395,6 +520,9 @@ void Tracker::inputIngredient() {
 		allIngredients[name] = Ingredient(name, calories, protein, carbs, fat, proportion);
 	}
 
+	text.clear();
+
+	text = readFoodStats(text);
 
 	list<string>::iterator it = text.begin();
 
@@ -402,9 +530,9 @@ void Tracker::inputIngredient() {
 
 	lineCount += 1;
 
-	text.insert(it, "\n\n");
+	text.insert(it, "\n");
 
-	text.insert(it, input);
+	text.insert(it, input + "\n");
 
 
 	ofstream myFile = ofstream();
@@ -447,6 +575,25 @@ void Tracker::inputMeal() {
 
 	m.proportion = proportion_Meal;
 
+
+	if (m.proportion.find("tsp") != -1) {
+
+		m.proportion = toMl(stod(m.proportion.substr(0, m.proportion.find("tsp"))), "tsp");
+	}
+
+	else if (m.proportion.find("tbsp") != -1) {
+
+		m.proportion = toMl(stod(m.proportion.substr(0, m.proportion.find("tbsp"))), "tbsp");
+
+	}
+
+	else if (m.proportion.find("cup") != -1) {
+
+		m.proportion = toMl(stod(m.proportion.substr(0, m.proportion.find("cup"))), "cup");
+
+	}
+
+
 	cout << endl;
 
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -457,9 +604,14 @@ void Tracker::inputMeal() {
 
 	while (!end) {
 
-		cout << "Ingredient " + to_string(itr) + " name? ";
+		do{
+			
+			cout << "Ingredient " + to_string(itr) + " name? ";
 
-		getline(cin, name_);
+			getline(cin, name_);
+
+		} while (!checkIfIngredientExists(name_));
+
 
 		if (name_ == "e" || name_ == "exit") {
 
@@ -470,6 +622,8 @@ void Tracker::inputMeal() {
 
 		cout << "Ingredient " + to_string(itr) + " proportion? ";
 
+		getline(cin, proportion);
+
 		if (proportion == "e" || proportion == "exit") {
 
 			end = true;
@@ -477,7 +631,22 @@ void Tracker::inputMeal() {
 
 		}
 
-		getline(cin, proportion);
+		if (proportion.find("tsp") != -1) {
+
+			proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+		}
+
+		else if (proportion.find("tbsp") != -1) {
+
+			proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+		}
+
+		else if (proportion.find("cup") != -1) {
+
+			proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+		}
 		
 		itr++;
 
@@ -495,34 +664,58 @@ void Tracker::inputMeal() {
 
 	string input;
 
-	if (m.ingredientList[0].proportion == allIngredients[m.ingredientList[0].name].proportion) {
+	if (m.ingredientList[0].proportion == allIngredients[m.ingredientList[0].name].proportion) { //note: if proportion are equal then null was used!
 
-		if (m.proportion == "null") {
+			if (m.proportion == "null" || m.proportion == "n") {
 
-			input = name + ": " + m.ingredientList[0].name;
+				input = name + ": " + m.ingredientList[0].name;
 
-		}
+			}
 
-		else {
+			else if (m.proportion.find("g") != -1) {
 
-			input = name + " (" + myRound(stod(m.proportion.substr(0,m.proportion.find("g"))), 1) + "g): " + m.ingredientList[0].name;
+				input = name + " (" + myRound(stod(m.proportion.substr(0,m.proportion.find("g"))), 1) + "g): " + m.ingredientList[0].name;
 
-		}
+			}
+
+			else if (m.proportion.find("ml") != -1) {
+
+				input = name + " (" + myRound(stod(m.proportion.substr(0, m.proportion.find("ml"))), 1) + "ml): " + m.ingredientList[0].name;
+
+			}
+
+			else if (m.proportion[0] == 'x') {
+
+				input = name + " (x" + myRound(stod(m.proportion.substr(1)), 1) + "): " + m.ingredientList[0].name;
+
+			}
 
 
 	}
 
 	else {
 
-		if (m.proportion == "null") {
+		if (m.proportion == "null" || m.proportion == "n") {
 
 			input = name + ": " + m.ingredientList[0].name + " (" + m.ingredientList[0].proportion + ")";
 
 		}
 
-		else {
+		else if (m.proportion.find("g") != -1) {
 
 			input = name + " (" + myRound(stod(m.proportion.substr(0, m.proportion.find("g"))), 1) + "g): " + m.ingredientList[0].name + " (" + m.ingredientList[0].proportion + ")";
+
+		}
+
+		else if (m.proportion.find("ml") != -1) {
+
+			input = name + " (" + myRound(stod(m.proportion.substr(0, m.proportion.find("ml"))), 1) + "ml): " + m.ingredientList[0].name + " (" + m.ingredientList[0].proportion + ")";
+
+		}
+
+		else if (m.proportion[0] = 'x') {
+
+			input = name + " (x" + myRound(stod(m.proportion.substr(1)), 1) + "): " + m.ingredientList[0].name + " (" + m.ingredientList[0].proportion + ")";
 
 		}
 
@@ -530,14 +723,32 @@ void Tracker::inputMeal() {
 	
 	for (int i = 1; i < m.ingredientList.size(); i++) {
 
-		if (m.ingredientList[i].proportion == allIngredients[m.ingredientList[i].name].proportion) {
+		if (m.ingredientList[i].proportion == allIngredients[m.ingredientList[i].name].proportion) { //note: if proportion are equal then null was used!
 
 			input += ", " + m.ingredientList[i].name;
 		}
 
 		else {
 
-			input += ", " + m.ingredientList[i].name + " (" + m.ingredientList[i].proportion + ")";
+			
+			if (m.ingredientList[i].proportion.find("g") != -1) {
+
+				input += ", " + m.ingredientList[i].name + " (" + myRound(stod(m.ingredientList[i].proportion.substr(0, m.ingredientList[i].proportion.find("g"))), 1) + "g)";
+
+			}
+
+			else if (m.ingredientList[i].proportion.find("ml") != -1) {
+
+				input += ", " + m.ingredientList[i].name + " (" + myRound(stod(m.ingredientList[i].proportion.substr(0, m.ingredientList[i].proportion.find("ml"))), 1) + "ml)";
+
+			}
+
+			else if (m.ingredientList[i].proportion[0] = 'x') {
+
+				input += ", " + m.ingredientList[i].name + " (x" + myRound(stod(m.ingredientList[i].proportion.substr(1)), 1) + ")";
+
+			}
+
 		}
 
 	}
@@ -576,11 +787,16 @@ void Tracker::track() {
 
 		if (answer == "ingredient" || answer == "i") {
 
-			cout << "name? ";
+			do {
 
-			getline(cin, name);
+				cout << "name? ";
 
-			cout << "\n" << endl;
+				getline(cin, name);
+
+				cout << "\n" << endl;
+
+			} while (!checkIfIngredientExists(name));
+
 
 			cout << "proportion? ";
 
@@ -589,6 +805,23 @@ void Tracker::track() {
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 			cout << "\n" << endl;
+
+			if (proportion.find("tsp") != -1) {
+
+				proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+			}
+
+			else if (proportion.find("tbsp") != -1) {
+
+				proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+			}
+
+			else if (proportion.find("cup") != -1) {
+
+				proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+			}
 
 			if (proportion == "null" || proportion == "n"){
 
@@ -684,11 +917,15 @@ void Tracker::track() {
 
 		else if (answer == "meal" || answer == "m") {
 
+		do {
+
 			cout << "name? ";
 
 			getline(cin, name);
 
 			cout << "\n" << endl;
+
+		} while (!checkIfMealExists(name));
 
 
 
@@ -714,35 +951,22 @@ void Tracker::track() {
 
 					while (!exit) {
 
-						cout << "Name of Ingredient? ";
+						do {
 
-						getline(cin, name_);
+							cout << "Name of Ingredient? ";
 
-						cout << "\n" << endl;
+							getline(cin, name_);
+
+							cout << "\n" << endl;
+
+						} while (!checkIfIngredientExists(name_));
+
+
 
 						if (name_ == "exit" || name_ == "e") {
 
 							exit = true;
 							continue;
-
-						}
-
-						for (int i = 0; i < m.ingredientList.size(); i++) {
-
-							if (name_ == m.ingredientList[i].name) {
-
-								ing = m.ingredientList[i];
-								found = true;
-								break;
-							}
-
-						}
-
-						if (!found) {
-
-							//Handle Exception that the ingredient was not found
-
-							cout << "Your ingredient was not found amist the meal's ingredients!\n\n";
 
 						}
 
@@ -766,6 +990,22 @@ void Tracker::track() {
 
 							}
 
+							if (proportion.find("tsp") != -1) {
+
+								proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+							}
+
+							else if (proportion.find("tbsp") != -1) {
+
+								proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+							}
+
+							else if (proportion.find("cup") != -1) {
+
+								proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+							}
 
 							m.cal -= ing.cal;
 
@@ -793,6 +1033,23 @@ void Tracker::track() {
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 					cout << "\n" << endl;
+
+					if (proportion.find("tsp") != -1) {
+
+						proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+					}
+
+					else if (proportion.find("tbsp") != -1) {
+
+						proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+					}
+
+					else if (proportion.find("cup") != -1) {
+
+						proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+					}
 
 					//handle exception if its not in grams
 
@@ -879,14 +1136,18 @@ void Tracker::track() {
 
 	cout << "Total: " << myRound(cal,0) << " cal (" << myRound(protein, 1) << "g/" << myRound(carbs, 1) << "g/" << myRound(fat, 1) << "g)\n\n\n";
 
+	do{
+		cout << "Where do you want these values to be saved at? ";
+
+		cin >> answer;
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		cout << "\n" << endl;
+
+	} while (answer != "b" && answer != "breakfast" && answer != "l" && answer != "lunch" && answer != "d" && answer != "dinner" && answer != "e" && answer != "exit");
 	
-	cout << "Where do you want these values to be saved at? ";
 
-	cin >> answer;
-
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-	cout << "\n" << endl;
 
 	if (answer == "b" || answer == "breakfast") {
 
@@ -975,6 +1236,7 @@ void Tracker::track() {
 				if (line.find("Week") != -1 && line.find("average") == -1) {
 
 					l.currentWeek++;
+					weight = 0;
 
 				}
 
@@ -986,7 +1248,6 @@ void Tracker::track() {
 					protein = 0;
 					carbs = 0;
 					fat = 0;
-					weight = 0;
 
 				}
 
@@ -1136,6 +1397,38 @@ void Tracker::debug() {
 	cout << d;
 
 	cout << "\n\n\n\n";
+
+}
+
+bool Tracker::checkIfIngredientExists(string name) {
+
+
+	if (allIngredients.count(name) == 1 || name == "e" || name == "exit") {
+
+		return true;
+	}
+
+	cout << "Sorry, the ingredient |" + name + "| cannot be found, try again!";
+
+	cout << "\n" << endl;
+
+	return false;
+
+}
+
+bool Tracker::checkIfMealExists(string name) {
+
+
+	if (mealList.count(name) == 1 || name == "e" || name == "exit") {
+
+		return true;
+	}
+
+	cout << "Sorry, the meal |" + name + "| cannot be found, try again!";
+
+	cout << "\n" << endl;
+
+	return false;
 
 }
 

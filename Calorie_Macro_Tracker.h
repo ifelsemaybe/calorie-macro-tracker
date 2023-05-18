@@ -187,4 +187,7 @@ public:
 
 	string displayFood(string name, double cal, double protein, double carbs, double fat, string proportion);
 
+	bool checkIfIngredientExists(string name);
+
+	bool checkIfMealExists(string name);
 };
