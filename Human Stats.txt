@@ -1,8 +1,0 @@
-Calory Goal: 3000 cal
-
-
-Protein Goal: 172.73g
-
-Carbs Goal : 382.94g
-
-Fat Goal : 86.37g

@@ -336,8 +336,6 @@ lobster: 122 cal (22g/2.7g/1.6g) (85g)
 
 chocolate mousse cake: 679 cal (10g/65g/45g) (200g)
 
-test1: 445 cal (32g/32g/43g) (300g)
-
 
 Meals:
 
@@ -398,5 +396,3 @@ mushroom soup (4004g): mushroom (193.7g), shallot (76.7g), scallion (51.7g), par
 salad (x3): cucumber (85.9g), scallion (17.6g), lettuce (89.9g), avocado (182.1g)
 
 lobster thermidor (x6): lobster (867.9g), shallot (95.9g), parmesan (100.6g), mushroom (242.2g), butter (107.2g), cooking cream (118.3ml), garlic (9.8g), whole grain dijon (9.9ml), white wine (44.4ml), parsley (21.9g), egg (x2)
-
-test_meal (x5): test1 (500g), apple (200g)
