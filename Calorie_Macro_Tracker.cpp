@@ -53,6 +53,30 @@ string toMl(double proportion, string mesure) {
 
 }
 
+string findVolumetricMesure(string proportion) {
+
+	if (proportion.find("tsp") != -1) {
+
+		proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
+
+	}
+
+	else if (proportion.find("tbsp") != -1) {
+
+		proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
+
+	}
+
+	else if (proportion.find("cup") != -1) {
+
+		proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
+
+	}
+
+	return proportion;
+
+}
+
 list<string> readFoodStats(list<string> text) {
 
 	ifstream myFile("Food Stats.txt");
@@ -194,30 +218,6 @@ void Tracker::readStats() {
 
 	while (getline(myFile, line)) {
 
-		//if (line.empty() && emptyx2 == true) { //not sure if this scales well with more \n than 2
-
-		//	text.push_back("\n");
-
-		//	emptyx2 = false;
-
-		//}
-
-		//else if (line.empty() && emptyx2 == false) {
-
-		//	text.push_back("\n\n");
-
-		//	emptyx2 = true;
-
-
-		//}
-
-		//else {
-
-		//	text.push_back(line);
-
-		//	emptyx2 = false;
-		//}
-
 		if (line.empty() || line == "(protein/carbs/fat) (proportion)" || line == "Ingredients:") continue;
 
 		if (line == "Meals:") {
@@ -260,22 +260,7 @@ void Tracker::readStats() {
 
 				proportion = line.substr(0, line.find(")"));
 
-				if (proportion.find("tsp") != -1) {
-
-					proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
-				}
-
-				else if (proportion.find("tbsp") != -1) {
-
-					proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
-
-				}
-
-				else if (proportion.find("cup") != -1) {
-
-					proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
-
-				}
+				proportion = findVolumetricMesure(proportion);
 
 			} else proportion = "";
 
@@ -295,22 +280,7 @@ void Tracker::readStats() {
 				temp_meal.proportion = temp.substr(temp.find("(") + 1, temp.find(")"));
 
 
-				if (temp_meal.proportion.find("tsp") != -1) {
-
-					temp_meal.proportion = toMl(stod(temp_meal.proportion.substr(0, temp_meal.proportion.find("tsp"))), "tsp");
-				}
-
-				else if (temp_meal.proportion.find("tbsp") != -1) {
-
-					temp_meal.proportion = toMl(stod(temp_meal.proportion.substr(0, temp_meal.proportion.find("tbsp"))), "tbsp");
-
-				}
-
-				else if (temp_meal.proportion.find("cup") != -1) {
-
-					temp_meal.proportion = toMl(stod(temp_meal.proportion.substr(0, temp_meal.proportion.find("cup"))), "cup");
-
-				}
+				temp_meal.proportion = findVolumetricMesure(temp_meal.proportion);
 
 			}
 
@@ -347,22 +317,7 @@ void Tracker::readStats() {
 
 					string ingredient_newProportionStr = line.substr(0, line.find(")"));
 
-					if (ingredient_newProportionStr.find("tsp") != -1) {
-
-						ingredient_newProportionStr = toMl(stod(ingredient_newProportionStr.substr(0, ingredient_newProportionStr.find("tsp"))), "tsp");
-					}
-
-					else if (ingredient_newProportionStr.find("tbsp") != -1) {
-
-						ingredient_newProportionStr = toMl(stod(ingredient_newProportionStr.substr(0, ingredient_newProportionStr.find("tbsp"))), "tbsp");
-
-					}
-
-					else if (ingredient_newProportionStr.find("cup") != -1) {
-
-						ingredient_newProportionStr = toMl(stod(ingredient_newProportionStr.substr(0, ingredient_newProportionStr.find("cup"))), "cup");
-
-					}
+					ingredient_newProportionStr = findVolumetricMesure(ingredient_newProportionStr);
 
 					if (line.find(",") != -1) {
 
@@ -469,22 +424,7 @@ void Tracker::inputIngredient() {
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 
-	if (proportion.find("tsp") != -1) {
-
-		proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
-	}
-
-	else if (proportion.find("tbsp") != -1) {
-
-		proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
-
-	}
-
-	else if (proportion.find("cup") != -1) {
-
-		proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
-
-	}
+	proportion = findVolumetricMesure(proportion);
 
 
 	if (proportion == "null" || proportion == "n") {
@@ -576,22 +516,7 @@ void Tracker::inputMeal() {
 	m.proportion = proportion_Meal;
 
 
-	if (m.proportion.find("tsp") != -1) {
-
-		m.proportion = toMl(stod(m.proportion.substr(0, m.proportion.find("tsp"))), "tsp");
-	}
-
-	else if (m.proportion.find("tbsp") != -1) {
-
-		m.proportion = toMl(stod(m.proportion.substr(0, m.proportion.find("tbsp"))), "tbsp");
-
-	}
-
-	else if (m.proportion.find("cup") != -1) {
-
-		m.proportion = toMl(stod(m.proportion.substr(0, m.proportion.find("cup"))), "cup");
-
-	}
+	m.proportion = findVolumetricMesure(m.proportion);
 
 
 	cout << endl;
@@ -631,22 +556,7 @@ void Tracker::inputMeal() {
 
 		}
 
-		if (proportion.find("tsp") != -1) {
-
-			proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
-		}
-
-		else if (proportion.find("tbsp") != -1) {
-
-			proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
-
-		}
-
-		else if (proportion.find("cup") != -1) {
-
-			proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
-
-		}
+		proportion = findVolumetricMesure(proportion);
 		
 		itr++;
 
@@ -806,22 +716,7 @@ void Tracker::track() {
 
 			cout << "\n" << endl;
 
-			if (proportion.find("tsp") != -1) {
-
-				proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
-			}
-
-			else if (proportion.find("tbsp") != -1) {
-
-				proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
-
-			}
-
-			else if (proportion.find("cup") != -1) {
-
-				proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
-
-			}
+			proportion = findVolumetricMesure(proportion);
 
 			if (proportion == "null" || proportion == "n"){
 
@@ -972,6 +867,24 @@ void Tracker::track() {
 
 						else {
 
+							for (Ingredient i : m.ingredientList) {
+
+								if (i.name == name_) {
+
+									found = true;
+									ing = i;
+									break;
+								}
+
+							}
+
+							if (!found) {
+
+								cout << "Sorry your ingredient is not a part of the meal's ingredient list! Try again!\n\n";
+								continue;
+
+							}
+
 							string proportion;
 
 							cout << "proportion? ";
@@ -990,22 +903,7 @@ void Tracker::track() {
 
 							}
 
-							if (proportion.find("tsp") != -1) {
-
-								proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
-							}
-
-							else if (proportion.find("tbsp") != -1) {
-
-								proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
-
-							}
-
-							else if (proportion.find("cup") != -1) {
-
-								proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
-
-							}
+							proportion = findVolumetricMesure(proportion);
 
 							m.cal -= ing.cal;
 
@@ -1033,75 +931,10 @@ void Tracker::track() {
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 					cout << "\n" << endl;
+					
+					proportion = findVolumetricMesure(proportion);
 
-					if (proportion.find("tsp") != -1) {
-
-						proportion = toMl(stod(proportion.substr(0, proportion.find("tsp"))), "tsp");
-					}
-
-					else if (proportion.find("tbsp") != -1) {
-
-						proportion = toMl(stod(proportion.substr(0, proportion.find("tbsp"))), "tbsp");
-
-					}
-
-					else if (proportion.find("cup") != -1) {
-
-						proportion = toMl(stod(proportion.substr(0, proportion.find("cup"))), "cup");
-
-					}
-
-					//handle exception if its not in grams
-
-					//handle exception where original meal doesn't have a proportion, so either = null or = ""
-
-					double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(m.proportion.substr(0, m.proportion.find("g")));
-
-					double cal = 0;
-
-					double carbs = 0, protein = 0, fat = 0;
-
-					for (int i = 0; i < m.ingredientList.size(); i++) {
-
-						if (m.ingredientList[i].proportion[0] == 'x') {
-
-							m.ingredientList[i].proportion = "x" + to_string(stod(m.ingredientList[i].proportion.substr(1)) * ratio);
-
-						}
-
-						else if (m.ingredientList[i].proportion.find("g") != -1) {
-
-							m.ingredientList[i].proportion = to_string(stod(m.ingredientList[i].proportion.substr(0, m.ingredientList[i].proportion.find("g"))) * ratio) + "g";
-
-						}
-
-						else if (m.ingredientList[i].proportion.find("ml") != -1) {
-
-							m.ingredientList[i].proportion = to_string(stod(m.ingredientList[i].proportion.substr(0, m.ingredientList[i].proportion.find("ml"))) * ratio) + "ml";
-
-						}
-
-						m.ingredientList[i].cal *= ratio;
-
-						m.ingredientList[i].carbs *= ratio;
-						m.ingredientList[i].protein *= ratio;
-						m.ingredientList[i].fat *= ratio;
-
-						cal += m.ingredientList[i].cal;
-
-						carbs += m.ingredientList[i].carbs;
-						protein += m.ingredientList[i].protein;
-						fat += m.ingredientList[i].fat;
-
-					}
-
-					m.cal = cal;
-
-					m.carbs = carbs;
-					m.protein = protein;
-					m.fat = fat;
-
-					m.proportion = proportion;
+					updateIngredientFromMeal(m, proportion, true);
 
 				}
 
@@ -1356,6 +1189,8 @@ void Tracker::track() {
 			d.foodsLunch = "[Foods ==> ";
 			d.foodsDinner = "[Foods ==> ";
 
+			l.to_log = "";
+
 			ifile.close();
 			ofile.close();
 
@@ -1551,6 +1386,226 @@ void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion
 	m.fat += ing.fat;
 
 	m.ingredientList.push_back(ing);
+
+
+}
+
+void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundProportion) {
+
+	if (proportion[0] == 'x') {
+
+		if (roundProportion) {
+
+			proportion = "x" + myRound(stod(proportion.substr(1)), 1);
+
+		}
+
+		if (m.proportion[0] == 'x') {
+
+			double ratio = stod(proportion.substr(1)) / stod(m.proportion.substr(1));
+
+			m.cal *= ratio;
+			m.protein *= ratio;
+			m.carbs *= ratio;
+			m.fat *= ratio;
+
+			m.proportion = proportion;
+
+			for (Ingredient ing : m.ingredientList) {
+
+				ing.cal *= ratio;
+				ing.protein *= ratio;
+				ing.carbs *= ratio;
+				ing.fat *= ratio;
+
+				if (ing.proportion[0] == 'x') {
+
+					ing.proportion = "x" + myRound(stod(ing.proportion.substr(1)) * ratio, 1);
+
+				}
+
+				else if (ing.proportion.find("g") != -1) {
+
+					ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio, 1) + "g";
+				}
+
+				else if (ing.proportion.find("ml") != -1) {
+
+					ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio, 1) + "ml";
+				}
+
+				else {
+
+					ing.proportion = "x" + myRound(ratio, 1);
+
+				}
+			}
+
+		}
+
+		else {
+
+			m.cal *= stod(proportion.substr(1));
+			m.protein *= stod(proportion.substr(1));
+			m.carbs *= stod(proportion.substr(1));
+			m.fat *= stod(proportion.substr(1));
+
+			if (m.proportion.find("g") != -1) {
+
+				m.proportion = to_string(stod(m.proportion.substr(0, m.proportion.find("g"))) * stod(proportion.substr(1))) + "g";
+
+			}
+
+			else if (m.proportion.find("ml") != -1) {
+
+				m.proportion = to_string(stod(m.proportion.substr(0, m.proportion.find("ml"))) * stod(proportion.substr(1))) + "ml";
+
+			}
+
+			else {
+
+				m.proportion = proportion;
+
+			}
+
+			for (Ingredient ing : m.ingredientList) {
+
+				ing.cal *= stod(proportion.substr(1));
+				ing.protein *= stod(proportion.substr(1));
+				ing.carbs *= stod(proportion.substr(1));
+				ing.fat *= stod(proportion.substr(1));
+
+				if (ing.proportion[0] == 'x') {
+
+					ing.proportion = "x" + to_string(stod(ing.proportion.substr(1)) * stod(proportion.substr(1)));
+
+				}
+
+				else if (ing.proportion.find("g") != -1) {
+
+					ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * stod(proportion.substr(1))) + "g";
+				}
+
+				else if (ing.proportion.find("ml") != -1) {
+
+					ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * stod(proportion.substr(1))) + "ml";
+				}
+
+				else {
+
+					ing.proportion = proportion;
+
+				}
+
+			}
+			
+		}
+
+	}
+
+	else if (proportion.find("g") != -1) {
+
+		//throw exception if proportion doesn't match with the meal proportion
+
+		if (roundProportion) {
+
+			proportion = myRound(stod(proportion.substr(0, proportion.find("g"))), 1) + "g";
+
+		}
+
+		double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(m.proportion.substr(0, m.proportion.find("g")));
+
+		m.cal *= ratio;
+		m.protein *= ratio;
+		m.carbs *= ratio;
+		m.fat *= ratio;
+
+		m.proportion = proportion;
+
+		for (Ingredient ing : m.ingredientList) {
+
+			ing.cal *= ratio;
+			ing.protein *= ratio;
+			ing.carbs *= ratio;
+			ing.fat *= ratio;
+
+			if (ing.proportion[0] == 'x') {
+
+				ing.proportion = "x" + myRound(stod(ing.proportion.substr(1)) * ratio, 1);
+
+			}
+
+			else if (ing.proportion.find("g") != -1) {
+
+				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio, 1) + "g";
+			}
+
+			else if (ing.proportion.find("ml") != -1) {
+
+				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio, 1) + "ml";
+			}
+
+			else {
+
+				ing.proportion = "x" + myRound(ratio, 1);
+
+			}
+
+		}
+
+	}
+
+	else if (proportion.find("ml") != -1) {
+
+		//throw exception if proportion doesn't match with the meal proportion
+
+		if (roundProportion) {
+
+			proportion = myRound(stod(proportion.substr(0, proportion.find("ml"))), 1) + "ml";
+
+		}
+
+		double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(m.proportion.substr(0, m.proportion.find("ml")));
+
+		m.proportion = proportion;
+
+		m.cal *= ratio;
+		m.protein *= ratio;
+		m.carbs *= ratio;
+		m.fat *= ratio;
+
+		for (Ingredient ing : m.ingredientList) {
+
+			ing.cal *= ratio;
+			ing.protein *= ratio;
+			ing.carbs *= ratio;
+			ing.fat *= ratio;
+
+			if (ing.proportion[0] == 'x') {
+
+				ing.proportion = "x" + myRound(stod(ing.proportion.substr(1)) * ratio, 1);
+
+			}
+
+			else if (ing.proportion.find("g") != -1) {
+
+				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio, 1) + "g";
+			}
+
+			else if (ing.proportion.find("ml") != -1) {
+
+				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio, 1) + "ml";
+			}
+
+			else {
+
+				ing.proportion = "x" + myRound(ratio, 1);
+
+			}
+
+		}
+
+	}
 
 
 }

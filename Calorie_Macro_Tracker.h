@@ -185,6 +185,8 @@ public:
 
 	void updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion, bool roundProportion);
 
+	void updateIngredientFromMeal(Meal& m, string proportion, bool roundProportion);
+
 	string displayFood(string name, double cal, double protein, double carbs, double fat, string proportion);
 
 	bool checkIfIngredientExists(string name);

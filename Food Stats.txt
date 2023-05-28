@@ -220,7 +220,7 @@ sugar: 16 cal (0g/4.2g/0g) (4.9ml)
 
 pork fat: 115 cal (0g/0g/13g) (14.8ml)
 
-black beans: 227 cal (15g/41g/0.9g) (236.6ml)
+black beans: 120 cal (7g/22g/0.3g) (0.25cup)
 
 serrano: 4 cal (0.2g/0.8g/0.1g) (12.2g)
 
@@ -308,6 +308,34 @@ burrito: 434 cal (17g/56g/16g) (241g)
 
 duck leg: 160 cal (25g/0g/7g) (100g)
 
+dock: 29 cal (2.7g/4.3g/0.9g) (133g)
+
+white wine: 121 cal (0.1g/3.8g/0g) (147.9ml)
+
+arborio rice: 242 cal (4.4g/53g/0.4g) (186g)
+
+kebapche: 167 cal (15g/1.5g/11g) (67g)
+
+karnache: 263 cal (12.4g/5.2g/22.2g) (100g)
+
+chow mein: 295 cal (18g/22g/15g) (181g)
+
+general tao: 1578 cal (69g/128g/88g) (535g)
+
+fortune cookie: 30 cal (0.3g/6.7g/0.2g) (8g)
+
+medovik: 424 cal (5g/42g/26g) (100g)
+
+leclerc dark chocolate cookies: 150 cal (2g/20g/7g) (30g)
+
+dill: 13 cal (0.9g/2.1g/0.3g) (30g)
+
+walnut: 13 cal (0.3g/0.3g/1.3g) (2g)
+
+lobster: 122 cal (22g/2.7g/1.6g) (85g)
+
+chocolate mousse cake: 679 cal (10g/65g/45g) (200g)
+
 
 Meals:
 
@@ -319,9 +347,9 @@ bagel with cream cheese and ham: bagel, cream cheese (40g), ham (50g)
 
 bagel with cream cheese and pastirma: bagel, cream cheese (33g), pastirma (35g)
 
-baked salmon: salmon (333g), mustard (7.4ml), olive oil (2.5ml)
+baked salmon: salmon (333g), whole grain dijon (2tbsp), olive oil (1tbsp)
 
-chili (2255g): olive oil, onion (184.2g), ground turkey (907g), garlic (17.7g), ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree (1.7cup), black beans (3cup), red pepper (165.2g), serrano (82.6g)
+chili (2137g): olive oil, onion (128.1g), ground turkey (214.5g), ground beef (692.6g), garlic (12.9g), ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree (1.3cup), black beans (1cup), red pepper (221.2g), serrano (79.6g)
 
 pumpkin cream soup (2256g): pumpkin (698g), carrot (98g), potato (485g), garlic clove (x10), onion (139g), chicken stock (946ml), butter (50g)
 
@@ -358,3 +386,13 @@ mac and cheese (2603.6g): mozzarella (248.5g), fontina (176.6g), parmesan (144.3
 banitsa (1216g): banitsa crust (400g), yogurt (200g), feta cheese (400g), butter (90g), olive oil (50g), egg (x5)
 
 pancake (1600g): milk (3.25%) (412ml), white flour[g] (500g), egg (x6)
+
+risotto (2487g): olive oil (3tbsp), butter (75g), onion (208g), mushroom (420g), garlic (29g), arborio rice (420g), white wine (450ml), chicken stock (960ml), parsley (53g), parmesan (75g), dock (200g)
+
+tarator (1998.6g): yogurt (370.9g), garlic (6.7g), cucumber (208.9g), walnut (20.2g), olive oil (29.6ml), dill (6.3g)
+
+mushroom soup (4004g): mushroom (193.7g), shallot (76.7g), scallion (51.7g), parsley (33.5g), potato (605.2g), dock (68.2g), carrot (223.3g), noodles (31.5g)
+
+salad (x3): cucumber (85.9g), scallion (17.6g), lettuce (89.9g), avocado (182.1g)
+
+lobster thermidor (x6): lobster (867.9g), shallot (95.9g), parmesan (100.6g), mushroom (242.2g), butter (107.2g), cooking cream (118.3ml), garlic (9.8g), whole grain dijon (9.9ml), white wine (44.4ml), parsley (21.9g), egg (x2)
