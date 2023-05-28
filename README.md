@@ -6,6 +6,11 @@ It works by reading the "Food Stats.txt" file, which acts as a database that sto
 
 This application handles a lot of the tedious ratio calculations behind nutrition tracking. An example would be, say you know 60 grams of an apple holds 100 calories, then how many calories would the apple weighing 213 grams hold that you just ate. You'd have to do 213/60 * 100 to get your answer. This app allows for tracking meals/ingredients volumetrically (ml, tsp, tbsp, cup), through weight (g), or through count (i.e. x3).
 
+## How To Run
+
+If on Windows (64 bit): look into the directory x64_Release and double-click Calorie_Macro_Tracker.exe. Else, you'd need the compile the source files with a c++ compiler of your choice.
+
+(Project was built using Visual Studio 2022, on Windows, and coded entirely in C++).
 
 ## Walkthrough
 
