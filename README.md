@@ -14,43 +14,43 @@ If on Windows (64 bit): look into the directory x64_Release and double-click Cal
 
 ## Walkthrough
 
-![image 1](/img/image 1.png)
+![image 1](/img/image_1.png)
 
 You are first greeted by this, where you can input 1 of 4 different commands: {input ingredient, input meal, track, debug}, or you can alternitevely leave by typing {e, exit}.
 
 ### 1. Input Ingredient
 
-![image 2](/img/image 2.png)
+![image 2](/img/image_2.png)
 
 Input ingredient writes a new ingredient to "Food Stats.txt", in the Ingredient section, through user input. Note, for the proportion, you can use all of the above (ml, tsp, tbsp, cup, g, x{number}) or type in n or null to leave it blank, which effectively acts the same way as if you'd have typed in x1.
 
 ### 2. Input Meal
 
-![image 3](/img/image 3.png)
+![image 3](/img/image_3.png)
 
 Input meal writes a new meal to "Food Stats.txt", in the Meal section, again, through user input. It will prompt you to enter a list of ingredients and their proportions, and it is very important the ingredient inside the meal holds the same proportion type as the ingredient inside the Ingredient section of the file, otherwise unexpected behaviour and crashing can be expected.
 
 ### 3. Track
 
-![image 4](/img/image 4.png)
+![image 4](/img/image_4.png)
 
 Tracking is the meat and potatoes of this app. It will first ask you for wether you want to input an Ingredient or a Meal.
 
 - Tracking Ingredient
 
-![image 5](/img/image 5.png)
+![image 5](/img/image_5.png)
 
 Again, the proportion type given must match the proportion type in the Ingredient section of "Food Stats.txt". Optionally you can also enter n or null, to have the ingredient be tracked with its default proportion, stated in "Food Stats.txt".
 
 - Tracking Meal
 
-![image 6](/img/image 6.png)
+![image 6](/img/image_6.png)
 
 When tracking the meal, you have 2 options: 1-changing the meal proportion (cmp), and 2-changing ingredient proportion (cip). I mainly use the first option when you have a meal such as a stew or soup, where you know the total weight of your meal, and then you measure out the weight of one serving which you would input into the cmp. The second option is usefull when wanting to change individual ingredients inside of your meal.
 
 - Storing Data
 
-![image 7](/img/image 7.png)
+![image 7](/img/image_7.png)
 
 Once you've exited out the tracking mode, the app will ask you where you want to store the values you've just tracked.
 You have three options here: breakfast, lunch, dinner, or you can also input "e", to not store them anywhere. This uses serialization, so once they have benn stored to a particular time period, even if the application is closed, the values will be remembered.
@@ -59,7 +59,7 @@ If you are tracking values into breakfast, for the first time, it will ask for y
 
 ### 4. Debug
 
-![image 8](/img/image 8.png)
+![image 8](/img/image_8.png)
 
 This outputs to console, all the values read from "Food Stats.txt" and any newly stored values that have just inputed through Input Ingredient or Input Meal. It also shows the total Macros and Calories stored in each Breakfast, Lunch and Dinner time periods, as well as showing the total of all three of those periods added up.
 
