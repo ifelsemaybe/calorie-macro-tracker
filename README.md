@@ -22,7 +22,7 @@ You are first greeted by this, where you can input 1 of 4 different commands: {i
 
 ![image 2](/img/image_2.png)
 
-Input ingredient writes a new ingredient to "Food Stats.txt", in the Ingredient section, through user input. Note, for the proportion, you can use all of the above (ml, tsp, tbsp, cup, g, x{number}) or type in n or null to leave it blank, which effectively acts the same way as if you'd have typed in x1.
+Input ingredient writes a new ingredient to "Food Stats.txt", in the Ingredient section, through user input. Note, for the proportion, you can use all of the above (ml, tsp, tbsp, cup, g, x{number}) or type in n or null to leave it blank, which effectively acts the same way as if you'd have typed in "x1".
 
 ### 2. Input Meal
 
