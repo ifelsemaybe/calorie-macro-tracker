@@ -8,7 +8,7 @@ This application handles a lot of the tedious ratio calculations behind nutritio
 
 ## How To Run
 
-If on Windows (64 bit): look into the directory x64_Release and double-click Calorie_Macro_Tracker.exe. Else, you'd need the compile the source files with a c++ compiler of your choice.
+If on Windows (64 bit): look into the directory x64_Release and double-click Calorie_Macro_Tracker.exe. Else, you'd need to compile the source files with a c++ compiler of your choice.
 
 (Project was built using Visual Studio 2022, on Windows, and coded entirely in C++).
 
