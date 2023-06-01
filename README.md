@@ -34,7 +34,7 @@ Input meal writes a new meal to "Food Stats.txt", in the Meal section, again, th
 
 ![image 4](/img/image_4.png)
 
-Tracking is the meat and potatoes of this app. It will first ask you for wether you want to input an Ingredient or a Meal.
+Tracking is the meat and potatoes of this app. It will first ask you for whether you want to input an Ingredient or a Meal.
 
 - Tracking Ingredient
 
@@ -52,7 +52,7 @@ When tracking the meal, you have 2 options: 1-changing the meal proportion (cmp)
 
 ![image 7](/img/image_7.png)
 
-Once you've exited out the tracking mode, the app will ask you where you want to store the values you've just tracked.
+Once you've exited out of the tracking mode, the app will ask you where you want to store the values you've just tracked.
 You have three options here: breakfast, lunch, dinner, or you can also input "e", to not store them anywhere. This uses serialization, so once they have been stored to a particular time period, even if the application is closed, the values will be remembered.
 
 If you are tracking values into breakfast, for the first time, it will ask for your weight. If you are tracking values into dinner, it will ask if you want to log them, whereby if you do, all three time periods get reset to 0 items tracked, symbolizing the end of tracking for that particular day.
