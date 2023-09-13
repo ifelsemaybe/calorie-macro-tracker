@@ -8,7 +8,7 @@ This application handles a lot of the tedious ratio calculations behind nutritio
 
 ## How To Run
 
-If on Windows (64 bit): look into the directory x64_Release and double-click Calorie_Macro_Tracker.exe. Else, you'd need the compile the source files with a c++ compiler of your choice.
+If on Windows (64 bit): look into the directory x64_Release and double-click Calorie_Macro_Tracker.exe. Else, you'd need to compile the source files with a c++ compiler of your choice.
 
 (Project was built using Visual Studio 2022, on Windows, and coded entirely in C++).
 
@@ -22,7 +22,7 @@ You are first greeted by this, where you can input 1 of 4 different commands: {i
 
 ![image 2](/img/image_2.png)
 
-Input ingredient writes a new ingredient to "Food Stats.txt", in the Ingredient section, through user input. Note, for the proportion, you can use all of the above (ml, tsp, tbsp, cup, g, x{number}) or type in n or null to leave it blank, which effectively acts the same way as if you'd have typed in x1.
+Input ingredient writes a new ingredient to "Food Stats.txt", in the Ingredient section, through user input. Note, for the proportion, you can use all of the above (ml, tsp, tbsp, cup, g, x{number}) or type in n or null to leave it blank, which effectively acts the same way as if you'd have typed in "x1".
 
 ### 2. Input Meal
 
@@ -34,7 +34,7 @@ Input meal writes a new meal to "Food Stats.txt", in the Meal section, again, th
 
 ![image 4](/img/image_4.png)
 
-Tracking is the meat and potatoes of this app. It will first ask you for wether you want to input an Ingredient or a Meal.
+Tracking is the meat and potatoes of this app. It will first ask you for whether you want to input an Ingredient or a Meal.
 
 - Tracking Ingredient
 
@@ -46,14 +46,14 @@ Again, the proportion type given must match the proportion type in the Ingredien
 
 ![image 6](/img/image_6.png)
 
-When tracking the meal, you have 2 options: 1-changing the meal proportion (cmp), and 2-changing ingredient proportion (cip). I mainly use the first option when you have a meal such as a stew or soup, where you know the total weight of your meal, and then you measure out the weight of one serving which you would input into the cmp. The second option is usefull when wanting to change individual ingredients inside of your meal.
+When tracking the meal, you have 2 options: 1-changing the meal proportion (cmp), and 2-changing ingredient proportion (cip). I mainly use the first option when you have a meal such as a stew or soup, where you know the total weight of your meal, and then you measure out the weight of one serving which you would input into the cmp. The second option is useful when wanting to change individual ingredients inside of your meal.
 
 - Storing Data
 
 ![image 7](/img/image_7.png)
 
-Once you've exited out the tracking mode, the app will ask you where you want to store the values you've just tracked.
-You have three options here: breakfast, lunch, dinner, or you can also input "e", to not store them anywhere. This uses serialization, so once they have benn stored to a particular time period, even if the application is closed, the values will be remembered.
+Once you've exited out of the tracking mode, the app will ask you where you want to store the values you've just tracked.
+You have three options here: breakfast, lunch, dinner, or you can also input "e", to not store them anywhere. This uses serialization, so once they have been stored to a particular time period, even if the application is closed, the values will be remembered.
 
 If you are tracking values into breakfast, for the first time, it will ask for your weight. If you are tracking values into dinner, it will ask if you want to log them, whereby if you do, all three time periods get reset to 0 items tracked, symbolizing the end of tracking for that particular day.
 
@@ -61,5 +61,5 @@ If you are tracking values into breakfast, for the first time, it will ask for y
 
 ![image 8](/img/image_8.png)
 
-This outputs to console, all the values read from "Food Stats.txt" and any newly stored values that have just inputed through Input Ingredient or Input Meal. It also shows the total Macros and Calories stored in each Breakfast, Lunch and Dinner time periods, as well as showing the total of all three of those periods added up.
+This outputs to console, all the values read from "Food Stats.txt" and any newly stored values that have just gotten inputed through Input Ingredient or Input Meal. It also shows the total Macros and Calories stored in each Breakfast, Lunch and Dinner time periods, as well as showing the total of all three of those periods added up.
 
