@@ -44,7 +44,7 @@ olive oil: 119 cal (0g/0g/14g) (14.8ml)
 
 dijon: 10 cal (0.4g/0g/0.5g) (4.9ml)
 
-frozen vegetables: 25 cal (2g/5g/0g) (85g)
+frozen vegetables: 30 cal (2g/7g/0g) (85g)
 
 white rice: 160 cal (4g/36g/0g) (45g)
 
@@ -144,8 +144,6 @@ pork shank: 197 cal (22g/0g/11g) (85g)
 
 red pepper: 32 cal (1g/7.6g/0.2g) (114g)
 
-protein bar: 250 cal (10g/43g/6g)
-
 chicken penne alfredo: 310 cal (17g/23g/17g) (195g)
 
 perch: 199 cal (42g/0g/2g) (170g)
@@ -198,7 +196,7 @@ boustan pita poulet: 430 cal (40g/16g/21.5g) (232g)
 
 baklava: 130 cal (2g/14g/7g) (25g)
 
-uncooked rice: 716 cal (13g/158g/1g) (200g)
+uncooked rice: 160 cal (4g/36g/0g) (45g)
 
 pita bread: 165 cal (5.5g/33g/0.7g) (60g)
 
@@ -312,7 +310,7 @@ dock: 29 cal (2.7g/4.3g/0.9g) (133g)
 
 white wine: 121 cal (0.1g/3.8g/0g) (147.9ml)
 
-arborio rice: 242 cal (4.4g/53g/0.4g) (186g)
+arborio rice: 360 cal (0g/80g/0g) (100g)
 
 kebapche: 167 cal (15g/1.5g/11g) (67g)
 
@@ -336,20 +334,136 @@ lobster: 122 cal (22g/2.7g/1.6g) (85g)
 
 chocolate mousse cake: 679 cal (10g/65g/45g) (200g)
 
-test1: 445 cal (32g/32g/43g) (300g)
+italian sausage: 258 cal (14g/3.2g/20g) (75g)
+
+zucchini: 30 cal (2.3g/5.4g/0.7g) (200g)
+
+fudge: 70 cal (0.4g/13g/1.6g) (17g)
+
+portuguese roll: 195 cal (5.7g/41g/0.6g) (83g)
+
+lady fingers: 110 cal (2g/20g/2.5g) (30g)
+
+builder bar - brownie: 250 cal (10g/43g/6g)
+
+builder bar - white chocolate: 260 cal (10g/42g/7g)
+
+watermelon: 86 cal (1.7g/22g/0.4g) (286g)
+
+orange julep: 96 cal (0.1g/24g/0g) (236.6ml)
+
+onion rings: 1004 cal (14g/115g/54g) (282g)
+
+burger: 540 cal (34g/40g/27g) (226g)
+
+snickers: 220 cal (4g/29g/11g) (47g)
+
+mandu dumpling: 420 cal (23g/51g/14g) (210g)
+
+lemon juice: 1 cal (0g/0.3g/0g) (5g)
+
+vanilla ice cream: 190 cal (4g/21g/10g) (98.1g)
+
+turmeric: 9 cal (0.3g/2g/0.1g) (4.9ml)
+
+cherry: 5 cal (0.1g/1.3g/0g) (8.2g)
+
+peach juice: 134 cal (0.7g/35g/0.1g) (236.6ml)
+
+cheese cake: 290 cal (5g/35g/15g) (96g)
+
+butter chicken naan wrap: 1255 cal (67g/95g/82g)
+
+gulab jamun: 149 cal (1.9g/20g/7.3g) (50g)
+
+mango lassi: 186 cal (5.2g/34g/4.5g) (236.6ml)
+
+boiled spaghetti: 210 cal (7.4g/42g/0.9g) (140g)
+
+borovets wafer: 482 cal (3.7g/63g/23g) (100g)
+
+olive: 9 cal (0.1g/0.5g/0.8g) (7.6g)
+
+pistachio ice cream: 130 cal (2g/14g/7g) (62.7g)
+
+baba ganoush: 167 cal (4.1g/11.4g/13.2g) (100g)
+
+air fried fries: 128 cal (2.6g/20.7g/4.1g) (100g)
+
+steak fajita: 293 cal (19g/25g/13g) (x1)
+
+wild caught haddock: 210 cal (15g/18g/9g) (125g)
+
+spring roll: 148 cal (3.7g/19g/6.2g) (64g)
+
+grapefruit: 52 cal (1g/13g/0.2g) (123g)
+
+double chocolat ice cream: 190 cal (4g/26g/9g) (95.6g)
+
+fudge brownie bites: 190 cal (2g/20g/11g) (38g)
+
+strawberry: 29 cal (0.6g/6.9g/0.3g) (90g)
+
+vanilla extract: 5 cal (0g/0g/0g) (4.9ml)
+
+unsweetened chocolate: 140 cal (3g/9g/15g) (28g)
+
+penne arrabbiata: 240 cal (8g/40g/5g) (255g)
+
+bundt cake: 245 cal (3.6g/36g/9.9g) (68g)
+
+school safe brownie: 170 cal (2g/21g/8g) (40g)
+
+buffalo chicken burger: 561 cal (26g/46g/29g)
+
+mac and cheese bites: 87 cal (2.5g/5.8g/6g) (31g)
+
+bergeron cheese: 110 cal (8g/1g/8g) (30g)
+
+hershey chocolate syrup: 90 cal (1g/23g/0.4g) (38g)
+
+ice cream cone: 274 cal (4.7g/35g/13g) (123g)
+
+peach: 68 cal (1.6g/17g/0.4g) (175g)
+
+calamari: 356 cal (18g/37g/15g) (143g)
+
+pesto: 323 cal (6.9g/4.7g/32g) (58g)
+
+godiva double chocolate cheesecake: 480 cal (6g/39g/35g) (125g)
+
+melon: 60 cal (1.5g/14g/0.3g) (177g)
+
+maple walnut ice cream: 190 cal (4g/20g/10g) (93.7g)
+
+hellmann's light mayo: 40 cal (0g/1g/4g) (15g)
+
+green bean: 44 cal (2.4g/9.9g/0.4g) (125g)
+
+wax bean: 44 cal (2.4g/9.9g/0.4g) (125g)
+
+blueberry: 16 cal (0.2g/4g/0g) (28g)
+
+ramen: 954 cal (48g/111g/35g) (707g)
+
+jarritos lime soda: 140 cal (0g/35g/0g) (370ml)
+
+mint and chocolate flakes ice cream: 130 cal (3g/15g/7g) (66.9g)
+
+lindt dark chocolate: 200 cal (2g/23g/12g) (38g)
 
 
 Meals:
 
 protein shake: protein powder, banana, milk (400ml)
 
+protein shake++: protein powder, banana, milk (3.25%) (400ml)
+
 overnight oats: chia seeds (3.3g), rolled oats (45g), yogurt (116.7g), milk (118.3ml), protein powder
 
-bagel with cream cheese and ham: bagel, cream cheese (40g), ham (50g)
+bagel: bagel, cream cheese (31g), deli ham (53g)
 
-bagel with cream cheese and pastirma: bagel, cream cheese (33g), pastirma (35g)
-
-baked salmon: salmon (333g), whole grain dijon (2tbsp), olive oil (1tbsp)
+baked salmon: salmon (333g), whole grain dijon (0.67tbsp), olive oil (0.33tbsp)
 
 chili (2137g): olive oil, onion (128.1g), ground turkey (214.5g), ground beef (692.6g), garlic (12.9g), ground cumin, ground black pepper, chili powder, ground cinnamon (0.6ml), paprika, corona, cocoa powder (4.9ml), tomato puree (1.3cup), black beans (1cup), red pepper (221.2g), serrano (79.6g)
 
@@ -357,7 +471,7 @@ pumpkin cream soup (2256g): pumpkin (698g), carrot (98g), potato (485g), garlic 
 
 pork with cabbage and rice (2504.4g): pork shoulder (851g), red cabbage (958g), duck fat (51g), olive oil (51g), carrot (93.4g), white rice (500g)
 
-bean soup (4365.8g): romano beans (3cup), onion (200g), carrot (350g), red pepper (225g), tomato (230g)
+bean soup (3671.5g): romano beans (3.3cup), onion (206.7g), carrot (219.6g), red pepper (203.3g), tomato (294.7g), olive oil (x3), parsley (26.2g), zucchini (231.8g), prosciutto (20g)
 
 mashed potato (1012.7g): potato (850.4g), butter (113g), milk (118.3ml)
 
@@ -369,7 +483,7 @@ moussaka (3423g): egg (x2), milk (3.25%) (473.2ml), white flour[ml] (29.6ml), ol
 
 seared pork tenderloin (793.4g): pork tenderloin (793.4g), olive oil (29.6ml)
 
-rice with sake (640.6g): white rice (640.6g), sake (100g)
+rice with sake (640.6g): uncooked rice (334.1g), sake (100ml)
 
 mushroom sauce (365.8g): garlic (15.2g), shallot (67.6g), mushroom, butter (26.8g), parsley (52.2g), chicken stock, parmesan (78.9ml), oregano, cooking cream (78.9ml)
 
@@ -391,7 +505,7 @@ pancake (1600g): milk (3.25%) (412ml), white flour[g] (500g), egg (x6)
 
 risotto (2487g): olive oil (3tbsp), butter (75g), onion (208g), mushroom (420g), garlic (29g), arborio rice (420g), white wine (450ml), chicken stock (960ml), parsley (53g), parmesan (75g), dock (200g)
 
-tarator (1998.6g): yogurt (370.9g), garlic (6.7g), cucumber (208.9g), walnut (20.2g), olive oil (29.6ml), dill (6.3g)
+tarator (2450.6g): yogurt (370.9g), garlic (6.7g), cucumber (208.9g), walnut (20.2g), olive oil (29.6ml), dill (6.3g)
 
 mushroom soup (4004g): mushroom (193.7g), shallot (76.7g), scallion (51.7g), parsley (33.5g), potato (605.2g), dock (68.2g), carrot (223.3g), noodles (31.5g)
 
@@ -399,4 +513,30 @@ salad (x3): cucumber (85.9g), scallion (17.6g), lettuce (89.9g), avocado (182.1g
 
 lobster thermidor (x6): lobster (867.9g), shallot (95.9g), parmesan (100.6g), mushroom (242.2g), butter (107.2g), cooking cream (118.3ml), garlic (9.8g), whole grain dijon (9.9ml), white wine (44.4ml), parsley (21.9g), egg (x2)
 
-test_meal (x5): test1 (500g), apple (200g)
+cooked mushroom (302.2g): mushroom (430.1g), butter (27.2g)
+
+cooked zucchini (349.5g): zucchini (1095.5g)
+
+sauce for zucchini (386g): yogurt (340.6g), olive oil (33.9ml), garlic (10.1g), parsley (4.8g)
+
+cooked asparagus (455.8g): asparagus (681.7g), lemon juice (22.7g), olive oil (29.6ml)
+
+baked trout (775.7g): trout (775.7g), mustard (22.2ml), olive oil (20.7ml), butter (27.8g)
+
+rice with tomato (1278.8g): onion (117.8g), carrot (139g), tomato (294.7g), uncooked rice (259.9g), olive oil (44.4ml), paprika (29.6ml), chicken stock (946.4ml), turmeric (2.5ml), parsley (55.2g)
+
+spaghetti noodles with butter (537.6g): boiled spaghetti (517.4g), butter (20.2g)
+
+spaghetti sauce (1426.1g): tomato puree (920ml), onion (125.3g), parsley (39.1g), oregano (20.3g), ground beef (441.9g), carrot (205.1g), garlic (14.4g)
+
+shish kebab (1187.3g): zucchini (207.3g), mushroom (206.6g), red pepper (303.8g), shallot (155.1g), pork shoulder (870.5g)
+
+brownies (608.4g): white flour[ml] (158.5ml), unsweetened chocolate (85.1g), butter (113.4g), sugar (295.7ml), egg (x2), vanilla extract
+
+risotto with chicken (3149.1g): onion (255.4g), chicken breast (370g), mushroom (452.3g), parmesan (110.2g), arborio rice (610g), white wine (236.6ml), chicken stock (946ml), olive oil (59.1ml), butter (30g)
+
+bean stew (1593.8g): carrot (253.1g), onion (244.8g), garlic (22.6g), wax bean (666g), green bean (282.3g), olive oil (59.2ml), tomato puree (118.3ml), chicken stock (946ml)
+
+mish mash (1008.8g): prosciutto (61.5g), red pepper (240g), shallot (95.5g), parsley (23.6g), tomato (110.2g), egg (x10), feta cheese (169.1g), olive oil (44.4ml), parmesan (15g)
+
+filled pepper (3513.5g): carrot (278.1g), onion (610.5g), ground pork (518g), uncooked rice (161g), red pepper (1260.8g), tomato (825.6g), chicken stock (200ml), egg (x3), olive oil (74ml), milk (3.25%) (179.7ml)

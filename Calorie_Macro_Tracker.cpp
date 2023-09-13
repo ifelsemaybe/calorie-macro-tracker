@@ -535,6 +535,18 @@ void Tracker::inputMeal() {
 
 			getline(cin, name_);
 
+			if (name_ == "input ingredient" || name_ == "input i") {
+
+				cout << "\n";
+
+				inputIngredient();
+
+				cout << "Ingredient " + to_string(itr) + " name? ";
+
+				getline(cin, name_);
+
+			}
+
 		} while (!checkIfIngredientExists(name_));
 
 
@@ -689,9 +701,7 @@ void Tracker::track() {
 
 		cout << "ingredient or meal? ";
 
-		cin >> answer;
-
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		getline(cin, answer);
 
 		cout << "\n" << endl;
 
@@ -959,6 +969,17 @@ void Tracker::track() {
 
 		}
 
+		if (answer == "input ingredient" || answer == "input i") {
+
+			inputIngredient();
+
+		}
+
+		else if (answer == "input meal" || answer == "input m") {
+
+			inputMeal();
+		}
+
 		if (answer == "exit" || answer == "e") {
 
 			exit = true;
@@ -984,6 +1005,24 @@ void Tracker::track() {
 
 	if (answer == "b" || answer == "breakfast") {
 
+		if (d.caloricBreakfast != 0) {
+
+			string yesOrNo = mealAlreadyHasFood_Warning("Breakfast");
+
+			to_lower(yesOrNo);
+
+			if (yesOrNo == "n" || yesOrNo == "no") {
+
+				cal = 0;
+				protein = 0;
+				carbs = 0;
+				fat = 0;
+				foods = "";
+
+			}
+
+		}
+
 		d.caloricBreakfast += cal;
 
 		d.proteinBreakfast += protein;
@@ -999,15 +1038,33 @@ void Tracker::track() {
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 			cout << "\n" << endl;
+
+			d.date = getTime();
 		}
 
 		d.foodsBreakfast += foods;
 
-		d.date = getTime();
-
 	}
 
 	else if (answer == "l" || answer == "lunch") {
+
+		if (d.caloricLunch != 0) {
+
+			string yesOrNo = mealAlreadyHasFood_Warning("Lunch");
+
+			to_lower(yesOrNo);
+
+			if (yesOrNo == "n" || yesOrNo == "no") {
+
+				cal = 0;
+				protein = 0;
+				carbs = 0;
+				fat = 0;
+				foods = "";
+
+			}
+
+		}
 
 		d.caloricLunch += cal;
 
@@ -1020,6 +1077,24 @@ void Tracker::track() {
 	}
 
 	else if (answer == "d" || answer == "dinner") {
+
+		if (d.caloricDinner != 0) {
+
+			string yesOrNo = mealAlreadyHasFood_Warning("Dinner");
+
+			to_lower(yesOrNo);
+
+			if (yesOrNo == "n" || yesOrNo == "no") {
+
+				cal = 0;
+				protein = 0;
+				carbs = 0;
+				fat = 0;
+				foods = "";
+
+			}
+
+		}
 
 		d.caloricDinner += cal;
 
@@ -1167,27 +1242,9 @@ void Tracker::track() {
 
 			ofile << l.to_log;
 
-			d.caloricBreakfast = 0;
-			d.caloricDinner = 0;
-			d.caloricLunch = 0;
+			cout << d;
 
-			d.carbBreakfast = 0;
-			d.carbDinner = 0;
-			d.carbLunch = 0;
-
-			d.fatBreakfast = 0;
-			d.fatDinner = 0;
-			d.fatLunch = 0;
-
-			d.proteinBreakfast = 0;
-			d.proteinDinner = 0;
-			d.proteinLunch = 0;
-
-			d.weight = 0;
-
-			d.foodsBreakfast = "[Foods ==> ";
-			d.foodsLunch = "[Foods ==> ";
-			d.foodsDinner = "[Foods ==> ";
+			resetDay();
 
 			l.to_log = "";
 
@@ -1232,6 +1289,59 @@ void Tracker::debug() {
 	cout << d;
 
 	cout << "\n\n\n\n";
+
+}
+
+void Tracker::reset() {
+
+	ofstream file;
+
+	file.open("day_saved.txt", ofstream::out | ofstream::trunc);
+
+	file.close();
+
+	resetDay();
+
+}
+
+void Tracker::resetDay() {
+
+	d.caloricBreakfast = 0;
+	d.caloricDinner = 0;
+	d.caloricLunch = 0;
+
+	d.carbBreakfast = 0;
+	d.carbDinner = 0;
+	d.carbLunch = 0;
+
+	d.fatBreakfast = 0;
+	d.fatDinner = 0;
+	d.fatLunch = 0;
+
+	d.proteinBreakfast = 0;
+	d.proteinDinner = 0;
+	d.proteinLunch = 0;
+
+	d.weight = 0;
+
+	d.foodsBreakfast = "[Foods ==> ";
+	d.foodsLunch = "[Foods ==> ";
+	d.foodsDinner = "[Foods ==> ";
+
+}
+
+
+string Tracker::mealAlreadyHasFood_Warning(string meal) {
+
+	cout << "Warning! Your MEAL [" + meal + "] already has an input.\n\nDo you still wish to input these new values(y / n) : ";
+
+	string answer;
+
+	getline(cin, answer);
+
+	cout << "\n\n";
+
+	return answer;
 
 }
 

@@ -34,12 +34,12 @@ int main() {
 
 		cout << "\n" << endl;
 
-		if (answer == "input ingredient") {
+		if (answer == "input ingredient" || answer == "input i") {
 
 			t.inputIngredient();
 		}
 
-		else if (answer == "input meal") {
+		else if (answer == "input meal" || answer == "input m") {
 
 			t.inputMeal();
 		}
@@ -53,6 +53,11 @@ int main() {
 
 			t.track();
 
+		}
+
+		else if (answer == "reset") {
+
+			t.reset();
 		}
 
 		if (answer == "exit" || answer == "e") {

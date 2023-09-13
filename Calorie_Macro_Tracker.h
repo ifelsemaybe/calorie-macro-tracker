@@ -14,11 +14,14 @@
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
+#include <boost/algorithm/string.hpp>
 
 
 using namespace std; 
 
 using namespace boost::archive;
+
+using namespace  boost::algorithm;
 
 class Ingredient {
 
@@ -181,6 +184,13 @@ public:
 	void debug();
 
 	void track();
+
+	void reset();
+
+	void resetDay();
+
+
+	string mealAlreadyHasFood_Warning(string meal);
 
 
 	void updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion, bool roundProportion);
