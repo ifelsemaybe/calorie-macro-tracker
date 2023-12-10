@@ -1,5 +1,7 @@
 #include "Calorie_Macro_Tracker.h"
 
+Tracker t = Tracker();
+
 string getTime() {
 
 	time_t t = time(NULL);
@@ -13,7 +15,7 @@ string getTime() {
 }
 
 
-string myRound(double d, int decimalPlace) {
+string Tracker::myRound(double d, int decimalPlace) {
 
 	decimalPlace = pow(10, decimalPlace);
 
@@ -133,7 +135,7 @@ Ingredient::Ingredient(const Ingredient& copy) {
 
 ostream& operator << (ostream& out, const Ingredient& ing) {
 
-	out << ing.name + ": calories[" + myRound(ing.cal, 0) + "] protein(" + myRound(ing.protein,1) + ") carbs(" + myRound(ing.carbs,1) + ") fat(" + myRound(ing.fat,1) + ")\n\n";
+	out << t.displayFood(ing.name, ing.cal, ing.protein, ing.carbs, ing.fat, ing.proportion);
 
 	return out;
 
@@ -170,41 +172,17 @@ Meal::Meal(string name, vector<Ingredient> ingredientList, double cal, double pr
 
 ostream& operator << (ostream& out, const Meal& meal) {
 
-	out << meal.name + ": calories[" + myRound(meal.cal, 0) + "] protein(" + myRound(meal.protein, 1) + ") carbs(" + myRound(meal.carbs, 1) + ") fat(" + myRound(meal.fat, 1) + ")\n\n";
-
-	out << "List of Ingredients: \n\n";
+	out << t.displayFood(meal.name, meal.cal, meal.protein, meal.carbs, meal.fat, meal.proportion) + "\n\n";
+	out << "List of Ingredients: \n\n\n";
 
 	for (auto& el : meal.ingredientList) {
 
-		out << el;
+		out << el << "\n\n";
 
 	}
 
-	out << "\n\n";
-
 	return out;
 
-}
-
-ostream& operator << (ostream& out, const Day& day) {
-
-	out << "Breakfast: \n\n";
-
-	out << "calories[" + myRound(day.caloricBreakfast, 0) + "] protein(" + myRound(day.proteinBreakfast, 1) + ") carbs(" + myRound(day.carbBreakfast, 1) + ") fat(" + myRound(day.fatBreakfast, 1) + ")\n\n";
-
-	out << "Lunch: \n\n";
-
-	out << "calories[" + myRound(day.caloricLunch, 0) + "] protein(" + myRound(day.proteinLunch, 1) + ") carbs(" + myRound(day.carbLunch, 1) + ") fat(" + myRound(day.fatLunch, 1) + ")\n\n";
-
-	out << "Dinner: \n\n";
-
-	out << "calories[" + myRound(day.caloricDinner, 0) + "] protein(" + myRound(day.proteinDinner, 1) + ") carbs(" + myRound(day.carbDinner, 1) + ") fat(" + myRound(day.fatDinner, 1) + ")\n\n";
-
-	out << "Total: \n\n";
-
-	out << "calories[" + myRound(day.caloricBreakfast + day.caloricLunch + day.caloricDinner, 0) + "] protein(" + myRound(day.proteinBreakfast + day.proteinLunch + day.proteinDinner, 1) + ") carbs(" + myRound(day.carbBreakfast + day.carbLunch + day.carbDinner, 1) + ") fat(" + myRound(day.fatBreakfast + day.fatLunch + day.fatDinner, 1) + ")\n\n";
-
-	return out;
 }
 
 void Tracker::readStats() {
@@ -466,7 +444,7 @@ void Tracker::inputIngredient() {
 
 	list<string>::iterator it = text.begin();
 
-	advance(it, lineCount * 2 + 3);
+	std::advance(it, lineCount * 2 + 3);
 
 	lineCount += 1;
 
@@ -697,13 +675,34 @@ void Tracker::track() {
 
 	bool exit = false;
 
+	mealTime selected = d.listOfMealTimes[0];
+
+	int numberOfMealTimes = d.listOfMealTimes.size();
+
+	for (mealTime& mealT : d.listOfMealTimes) {
+
+		if (mealT.stored == false) {
+
+			selected = mealT;
+
+			break;
+
+		}
+
+	}
+
+	cout << "Values stored in " + selected.name + " [" + to_string(selected.order) + "/" + to_string(numberOfMealTimes) + "]\n\n";
+
 	while (!exit) {
+
 
 		cout << "ingredient or meal? ";
 
 		getline(cin, answer);
 
 		cout << "\n" << endl;
+
+		to_lower(answer);
 
 		if (answer == "ingredient" || answer == "i") {
 
@@ -768,13 +767,13 @@ void Tracker::track() {
 
 						if (allIngredients[name].proportion.find("g") != -1) {
 
-							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, to_string(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g"))) * ratio)) + " - ";
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, myRound(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g"))) * ratio, 1) + "g") + " - ";
 
 						}
 
 						else if (allIngredients[name].proportion.find("ml") != -1) {
 
-							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, to_string(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml"))) * ratio)) + " - ";
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, myRound(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml"))) * ratio, 1) + "ml") + " - ";
 
 						}
 
@@ -980,280 +979,115 @@ void Tracker::track() {
 			inputMeal();
 		}
 
-		if (answer == "exit" || answer == "e") {
+		else if	(answer == "exit" || answer == "e") {
 
 			exit = true;
 		}
+
+		else if (answer.find(" ") != -1) {
+
+			vector<string> answerSplit;
+
+			split(answerSplit, answer, is_any_of(" "));
+
+			if (answerSplit[0] + " " + answerSplit[1] == "switch to" || answerSplit[0] == "sw") {
+
+				string mealTimeName = "";
+
+				if (answerSplit[0] == "sw") {
+
+					for (int x = 1; x < answerSplit.size(); x++) {
+
+						mealTimeName += answerSplit[x];
+					}
+
+				}
+
+				else {
+
+					for (int x = 2; x < answerSplit.size(); x++) {
+
+						mealTimeName += answerSplit[x];
+					}
+
+				}
+
+				bool found = false;
+
+				for (mealTime mT : d.listOfMealTimes) {
+
+					to_lower(mT.name);
+
+					if (mealTimeName == mT.name) {
+
+						selected = d.listOfMealTimes[mT.order-1];
+						found = true;
+
+						break;
+
+					}
+
+				}
+
+				if (!found) {
+
+					cout << "Sorry! " + mealTimeName + " was not found. Current meal time remains the same. \n\n";
+
+				}
+
+				else {
+
+					cout << "Values stored in " + selected.name + " [" + to_string(selected.order) + "/" + to_string(numberOfMealTimes) + "]\n\n";
+
+				}
+
+			}
+
+		}
+
 
 	}
 
 
 	cout << "Total: " << myRound(cal,0) << " cal (" << myRound(protein, 1) << "g/" << myRound(carbs, 1) << "g/" << myRound(fat, 1) << "g)\n\n\n";
 
-	do{
-		cout << "Where do you want these values to be saved at? ";
+	if (d.weight == 0) {
 
-		cin >> answer;
+		cout << "What is your weight? ";
 
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-		cout << "\n" << endl;
-
-	} while (answer != "b" && answer != "breakfast" && answer != "l" && answer != "lunch" && answer != "d" && answer != "dinner" && answer != "e" && answer != "exit");
-	
-
-
-	if (answer == "b" || answer == "breakfast") {
-
-		if (d.caloricBreakfast != 0) {
-
-			string yesOrNo = mealAlreadyHasFood_Warning("Breakfast");
-
-			to_lower(yesOrNo);
-
-			if (yesOrNo == "n" || yesOrNo == "no") {
-
-				cal = 0;
-				protein = 0;
-				carbs = 0;
-				fat = 0;
-				foods = "";
-
-			}
-
-		}
-
-		d.caloricBreakfast += cal;
-
-		d.proteinBreakfast += protein;
-		d.carbBreakfast += carbs;
-		d.fatBreakfast += fat;
-
-		if (d.weight == 0) {
-
-			cout << "What is your weight? ";
-
-			cin >> d.weight;
-
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-			cout << "\n" << endl;
-
-			d.date = getTime();
-		}
-
-		d.foodsBreakfast += foods;
-
-	}
-
-	else if (answer == "l" || answer == "lunch") {
-
-		if (d.caloricLunch != 0) {
-
-			string yesOrNo = mealAlreadyHasFood_Warning("Lunch");
-
-			to_lower(yesOrNo);
-
-			if (yesOrNo == "n" || yesOrNo == "no") {
-
-				cal = 0;
-				protein = 0;
-				carbs = 0;
-				fat = 0;
-				foods = "";
-
-			}
-
-		}
-
-		d.caloricLunch += cal;
-
-		d.proteinLunch += protein;
-		d.carbLunch += carbs;
-		d.fatLunch += fat;
-
-		d.foodsLunch += foods;
-
-	}
-
-	else if (answer == "d" || answer == "dinner") {
-
-		if (d.caloricDinner != 0) {
-
-			string yesOrNo = mealAlreadyHasFood_Warning("Dinner");
-
-			to_lower(yesOrNo);
-
-			if (yesOrNo == "n" || yesOrNo == "no") {
-
-				cal = 0;
-				protein = 0;
-				carbs = 0;
-				fat = 0;
-				foods = "";
-
-			}
-
-		}
-
-		d.caloricDinner += cal;
-
-		d.proteinDinner += protein;
-		d.carbDinner += carbs;
-		d.fatDinner += fat;
-
-		d.foodsDinner += foods;
-
-		cout << "Do you want to log the day? ";
-
-		cin >> answer;
+		cin >> d.weight;
 
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 		cout << "\n" << endl;
 
-		if (answer == "y" || answer == "yes") {
+		d.date = getTime();
 
-			ifstream ifile("log.txt");
+	}
 
-			ofstream ofile("log.txt", ios::app);
+	if (selected.stored) {
 
-			double cal = 0;
+		string yesOrNo = mealAlreadyHasFood_Warning(selected.name);
 
-			double protein = 0;
-			double carbs = 0;
-			double fat = 0;
+		to_lower(yesOrNo);
 
-			double weight = 0;
+		if (yesOrNo == "n" || yesOrNo == "no") {
 
-			d.foodsBreakfast = d.foodsBreakfast.substr(0, d.foodsBreakfast.size() - 3) + "]";
-
-			d.foodsLunch = d.foodsLunch.substr(0, d.foodsLunch.size() - 3) + "]";
-
-			d.foodsDinner = d.foodsDinner.substr(0, d.foodsDinner.size() - 3) + "]";
-
-			string line;
-
-			if (!ifile.is_open()) {
-
-				cout << "Unable to open file";
-			}
-
-			while (getline(ifile, line)) {
-
-				if (line.find("Week") != -1 && line.find("average") == -1) {
-
-					l.currentWeek++;
-					weight = 0;
-
-				}
-
-				if (line.find("average") != -1) {
-
-					l.currentDay = 1;
-
-					cal = 0;
-					protein = 0;
-					carbs = 0;
-					fat = 0;
-
-				}
-
-				if (line.find("Day") != -1) {
-
-					l.currentDay++;
-
-				}
-
-				if (line.find("Total") != -1) {
-
-					line.erase(0, line.find(":") + 2);
-
-					cal += stod(line.substr(0, line.find(" ")));
-
-					line.erase(0, line.find("(") + 1);
-
-					protein += stod(line.substr(0, line.find("g")));
-
-					line.erase(0, line.find("/") + 1);
-
-					carbs += stod(line.substr(0, line.find("g")));
-
-					line.erase(0, line.find("/") + 1);
-
-					fat += stod(line.substr(0, line.find("g")));
-
-				}
-
-				if (line.find("Weight") != -1) {
-
-					line.erase(0, line.find(" ") + 1);
-
-					weight += stod(line.substr(0, line.find(" kg")));
-
-				}
-
-			}
-
-			if (l.currentDay == 7) {
-
-				l.appendEndofWeek = true;
-
-			}
-
-			else if (l.currentDay == 1) {
-
-				l.appendNewWeek = true;
-			}
-
-
-
-			if (l.appendNewWeek) {
-
-
-				l.to_log += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nWeek " + to_string(l.currentWeek) + "\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n\n\n";
-
-			}
-
-			l.to_log += "Day " + to_string(l.currentDay) + " (" + d.date + "):\n------------------\n\n\n\tBreakfast: " + myRound(d.caloricBreakfast, 0) + " cal (" + myRound(d.proteinBreakfast, 1) + "g/" + myRound(d.carbBreakfast, 1) + "g/" + myRound(d.fatBreakfast, 1) + "g)\n\n" + d.foodsBreakfast + "\n\n\n\tLunch: " + myRound(d.caloricLunch, 0) + " cal (" + myRound(d.proteinLunch, 1) + "g/" + myRound(d.carbLunch, 1) + "g/" + myRound(d.fatLunch, 1) + "g)\n\n" + d.foodsLunch + "\n\n\n\tDinner: " + myRound(d.caloricDinner, 0) + " cal (" + myRound(d.proteinDinner, 1) + "g/" + myRound(d.carbDinner, 1) + "g/" + myRound(d.fatDinner, 1) + "g)\n\n" + d.foodsDinner + "\n\n\n\nTotal: " + myRound(d.caloricBreakfast + d.caloricLunch + d.caloricDinner, 0) + " cal (" + myRound(d.proteinBreakfast + d.proteinLunch + d.proteinDinner, 1) + "g/" + myRound(d.carbBreakfast + d.carbLunch + d.carbDinner, 1) + "g/" + myRound(d.fatBreakfast + d.fatLunch + d.fatDinner, 1) + "g)\n\nWeight: " + myRound(d.weight, 2) + " kg\n\n\n\n";
-
-
-			if (l.appendEndofWeek) {
-
-				cal += stod(myRound(d.caloricBreakfast + d.caloricDinner + d.caloricLunch, 0));
-
-				double cal_avg = cal / 7;
-
-				protein += stod(myRound(d.proteinBreakfast + d.proteinDinner + d.proteinLunch, 1));
-				carbs += stod(myRound(d.carbBreakfast + d.carbDinner + d.carbLunch, 1));
-				fat += stod(myRound(d.fatBreakfast + d.fatDinner + d.fatLunch, 1));
-
-				double protein_avg = protein / 7;
-				double carbs_avg = carbs / 7;
-				double fat_avg = fat / 7;
-
-				weight += stod(myRound(d.weight, 2));
-
-				double weight_avg = weight / 7;
-
-				l.to_log += "Week's average:\n\n\n\tCalories/Macros: " + myRound(cal_avg, 0) + " cal (" + myRound(protein_avg, 1) + "g/" + myRound(carbs_avg, 1) + "g/" + myRound(fat_avg, 0) + "g)\n\n\tWeight: " + myRound(weight_avg, 2) + " kg\n\n\n";
-
-			}
-
-			ofile << l.to_log;
-
-			cout << d;
-
-			resetDay();
-
-			l.to_log = "";
-
-			ifile.close();
-			ofile.close();
+			return;
 
 		}
 
 	}
+
+	selected.calories += cal;
+	selected.protein += protein;
+	selected.carb += carbs;
+	selected.fat += fat;
+	selected.foods += foods;
+
+	selected.stored = true;
+
+	d.listOfMealTimes[selected.order - 1] = selected;
 
 	ofstream ofs("day_saved.txt");
 
@@ -1268,11 +1102,153 @@ void Tracker::track() {
 
 }
 
+void Tracker::log() {
+
+	ifstream ifile("log.txt");
+
+	ofstream ofile("log.txt", ios::app);
+
+	string line;
+
+	int currentDay = 1;
+	int	currentWeek = 1;
+	string to_log;
+	bool appendNewWeek = false, appendEndofWeek = false;
+
+	double cal = 0;
+	double protein = 0;
+	double carbs = 0;
+	double fat = 0;
+
+	double weight = 0;
+
+	while (getline(ifile, line)) {
+
+		if (line.find("Week") != -1 && line.find("average") == -1) {
+
+			currentWeek++;
+			weight = 0;
+
+		}
+
+		if (line.find("average") != -1) {
+
+			currentDay = 1;
+
+			cal = 0;
+			protein = 0;
+			carbs = 0;
+			fat = 0;
+
+		}
+
+		if (line.find("Day") != -1) {
+
+			currentDay++;
+
+		}
+
+		if (line.find("Total") != -1) {
+
+			line.erase(0, line.find(":") + 2);
+
+			cal += stod(line.substr(0, line.find(" ")));
+
+			line.erase(0, line.find("(") + 1);
+
+			protein += stod(line.substr(0, line.find("g")));
+
+			line.erase(0, line.find("/") + 1);
+
+			carbs += stod(line.substr(0, line.find("g")));
+
+			line.erase(0, line.find("/") + 1);
+
+			fat += stod(line.substr(0, line.find("g")));
+
+		}
+
+		if (line.find("Weight") != -1) {
+
+			line.erase(0, line.find(" ") + 1);
+
+			weight += stod(line.substr(0, line.find(" kg")));
+
+		}
+
+	}
+
+	if (currentDay == 7) {
+
+		appendEndofWeek = true;
+
+	}
+
+	else if (currentDay == 1) {
+
+		appendNewWeek = true;
+	}
+
+	if (appendNewWeek) {
+
+
+		to_log += "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nWeek " + to_string(currentWeek) + "\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n\n\n";
+
+	}
+
+	to_log += "Day " + to_string(currentDay) + " (" + d.date + "):\n------------------\n\n\n";
+
+	to_log += d.displayDay(true) + "\n\n\n\n";
+
+	if (appendEndofWeek) {
+
+		double totalCalories = 0, totalProtein = 0, totalCarbs = 0, totalFat = 0;
+
+		for (mealTime& mT : d.listOfMealTimes) {
+
+			totalCalories += mT.calories;
+			totalProtein += mT.protein;
+			totalCarbs += mT.carb;
+			totalFat += mT.fat;
+
+		}
+
+		cal += stod(myRound(totalCalories, 0));
+
+		double cal_avg = cal / 7;
+
+		protein += stod(myRound(totalProtein, 1));
+		carbs += stod(myRound(totalCarbs, 1));
+		fat += stod(myRound(totalFat, 1));
+
+		double protein_avg = protein / 7;
+		double carbs_avg = carbs / 7;
+		double fat_avg = fat / 7;
+
+		weight += stod(myRound(d.weight, 2));
+
+		double weight_avg = weight / 7;
+
+		to_log += "Week's average:\n\n\n\t" + displayFood("Calories\\Macros", cal_avg, protein_avg, carbs_avg, fat_avg, "null") + "\n\n\tWeight: " + myRound(weight_avg, 2) + " kg\n\n\n";
+
+	}
+
+	ofile << to_log;
+
+	cout << d << "\n\n\n\n";
+
+	reset();
+
+	ifile.close();
+	ofile.close();
+
+}
+
 void Tracker::debug() {
 
 	for (auto& el : allIngredients){
 
-		cout << el.second;
+		cout << el.second << "\n\n";
 
 	}
 
@@ -1280,60 +1256,61 @@ void Tracker::debug() {
 
 	for (auto& el : mealList) {
 
-		cout << el.second;
+		cout << el.second << "\n\n";
 
 	}
 
-	cout << "\n\n\n\n";
+	cout << "\n\nMealTimes Order:\n\n";
 
-	cout << d;
+	for (mealTime& mT : d.listOfMealTimes) {
 
-	cout << "\n\n\n\n";
+		if (mT.order == d.listOfMealTimes.size()) {
+
+			cout << mT.name + "[" + to_string(mT.order) + "]";
+
+			break;
+
+		}
+
+		cout << mT.name + " [" + to_string(mT.order) + "] --> ";
+
+	}
+
+	cout << "\n\n\n\n\n\n" << d << "\n\n\n\n";
 
 }
 
-void Tracker::reset() {
+void Tracker::reset() { 
 
-	ofstream file;
+	for (mealTime& mT : d.listOfMealTimes) {
 
-	file.open("day_saved.txt", ofstream::out | ofstream::trunc);
+		mT.calories = 0;
+		mT.protein = 0;
+		mT.carb = 0;
+		mT.fat = 0;
+		mT.foods = "[Foods ==> ";
+		mT.stored = false;
 
-	file.close();
-
-	resetDay();
-
-}
-
-void Tracker::resetDay() {
-
-	d.caloricBreakfast = 0;
-	d.caloricDinner = 0;
-	d.caloricLunch = 0;
-
-	d.carbBreakfast = 0;
-	d.carbDinner = 0;
-	d.carbLunch = 0;
-
-	d.fatBreakfast = 0;
-	d.fatDinner = 0;
-	d.fatLunch = 0;
-
-	d.proteinBreakfast = 0;
-	d.proteinDinner = 0;
-	d.proteinLunch = 0;
+	}
 
 	d.weight = 0;
+	d.date = "";
 
-	d.foodsBreakfast = "[Foods ==> ";
-	d.foodsLunch = "[Foods ==> ";
-	d.foodsDinner = "[Foods ==> ";
+	ofstream ofs("day_saved.txt");
+
+	{
+
+		text_oarchive oa(ofs);
+		oa << d;
+
+	}
 
 }
 
 
 string Tracker::mealAlreadyHasFood_Warning(string meal) {
 
-	cout << "Warning! Your MEAL [" + meal + "] already has an input.\n\nDo you still wish to input these new values(y / n) : ";
+	cout << "Warning! Your MEAL [" + meal + "] already has an input.\n\nDo you still wish to input these new values (y/n): ";
 
 	string answer;
 
