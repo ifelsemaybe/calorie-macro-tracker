@@ -208,8 +208,6 @@ void Tracker::readStats() {
 		
 		if (!switch_) {
 
-			lineCount++; //nbr ingredients stored in "Food Stats.txt"
-
 			string name = line.substr(0, line.find(":"));
 
 			line.erase(0, line.find(":") + 2);
@@ -307,7 +305,9 @@ void Tracker::readStats() {
 					Ingredient ingredient = allIngredients[ingredient_name];
 
 
-					updateIngredientInMeal(ingredient, temp_meal, ingredient_newProportionStr, false);
+					updateIngredientInMeal(ingredient, temp_meal, ingredient_newProportionStr);
+
+					temp_meal.ingredientList.push_back(ingredient);
 
 
 				}
@@ -334,7 +334,9 @@ void Tracker::readStats() {
 
 					Ingredient ingredient = allIngredients[ingredient_name];
 
-					updateIngredientInMeal(ingredient, temp_meal, "", false);
+					updateIngredientInMeal(ingredient, temp_meal, "");
+
+					temp_meal.ingredientList.push_back(ingredient);
 
 				}
 
@@ -352,6 +354,25 @@ void Tracker::readStats() {
 }
 
 void Tracker::inputIngredient() {
+
+	ifstream readFile;
+	readFile.open("Food Stats.txt");
+
+	string line;
+
+	lineCount = 0;
+
+	while (getline(readFile, line)) {
+
+		if (line.empty() || line == "(protein/carbs/fat) (proportion)" || line == "Ingredients:") continue;
+
+		else if (line == "Meals:") break;
+
+		lineCount++;
+
+	}
+
+	readFile.close();
 
 	string input;
 
@@ -404,39 +425,9 @@ void Tracker::inputIngredient() {
 
 	proportion = findVolumetricMesure(proportion);
 
+	input = displayFood(name, calories, protein, carbs, fat, proportion);
 
-	if (proportion == "null" || proportion == "n") {
-
-		input = name + ": " + myRound(calories, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
-		
-		allIngredients[name] = Ingredient(name, calories, protein, carbs, fat, "");
-
-	}
-
-	else {
-
-		if (proportion[0] == 'x') {
-
-			proportion = "x" + myRound(stod(proportion.substr(1)), 1);
-
-		}
-
-		else if (proportion.find("g") != -1) {
-
-			proportion = myRound(stod(proportion.substr(0, proportion.find("g"))), 1) + "g";
-
-		}
-
-		else {
-
-			proportion = myRound(stod(proportion.substr(0, proportion.find("ml"))), 1) + "ml";
-
-		}
-
-		input = name + ": " + myRound(calories, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
-
-		allIngredients[name] = Ingredient(name, calories, protein, carbs, fat, proportion);
-	}
+	allIngredients[name] = (proportion == "null" || proportion == "n") ? Ingredient(name, calories, protein, carbs, fat, "") : Ingredient(name, calories, protein, carbs, fat, proportion);
 
 	text.clear();
 
@@ -554,7 +545,9 @@ void Tracker::inputMeal() {
 
 		Ingredient ing = allIngredients[name_];
 
-		updateIngredientInMeal(ing, m, proportion, true);
+		updateIngredientInMeal(ing, m, proportion);
+
+		m.ingredientList.push_back(ing);
 
 	}
 
@@ -563,6 +556,8 @@ void Tracker::inputMeal() {
 	mealList[name] = m;
 
 	string input;
+
+	//Very Ugly written code below, might need to rewrite and remove repeating code by making helper methods :/
 
 	if (m.ingredientList[0].proportion == allIngredients[m.ingredientList[0].name].proportion) { //note: if proportion are equal then null was used!
 
@@ -594,6 +589,27 @@ void Tracker::inputMeal() {
 	}
 
 	else {
+
+		//Rounding first ingredient proportion!
+
+		if (m.ingredientList[0].proportion.find("g") != -1) {
+
+			m.ingredientList[0].proportion = myRound(stod(m.ingredientList[0].proportion.substr(0, m.ingredientList[0].proportion.find("g"))), 1) + "g";
+		}
+
+		else if (m.ingredientList[0].proportion.find("ml") != -1) {
+
+			m.ingredientList[0].proportion = myRound(stod(m.ingredientList[0].proportion.substr(0, m.ingredientList[0].proportion.find("ml"))), 1) + "ml";
+
+		}
+
+		else if (m.ingredientList[0].proportion[0] = 'x') {
+
+			m.ingredientList[0].proportion = "x" + myRound(stod(m.ingredientList[0].proportion.substr(1)), 1);
+
+		}
+
+		//Rounding meal proportion and adding first ingredient and its rounded proportion!
 
 		if (m.proportion == "null" || m.proportion == "n") {
 
@@ -737,49 +753,63 @@ void Tracker::track() {
 
 				foods += displayFood(name, allIngredients[name].cal, allIngredients[name].protein, allIngredients[name].carbs, allIngredients[name].fat, proportion) + " - ";
 
+				cout << displayFood(name, allIngredients[name].cal, allIngredients[name].protein, allIngredients[name].carbs, allIngredients[name].fat, proportion) << "\n\n\n";
+
 			}
 
 			else {
+
+				double ratio;
 
 				if (proportion[0] == 'x') {
 
 					if (allIngredients[name].proportion[0] == 'x') {
 
-						double ratio = stod(proportion.substr(1)) / stod(allIngredients[name].proportion.substr(1));
+						ratio = stod(proportion.substr(1)) / stod(allIngredients[name].proportion.substr(1));
 
 						cal += (allIngredients[name].cal * ratio);
 						protein += (allIngredients[name].protein * ratio);
 						carbs += (allIngredients[name].carbs * ratio);
 						fat += (allIngredients[name].fat * ratio);
 
-						foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
+						//A property boolean for displayFood to cout would not be a bad idea!
+
+						foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion, true) + " - ";
+
+						cout << "\n\n\n";
 
 					}
 
 					else {
 
-						double ratio = stod(proportion.substr(1));
+						ratio = stod(proportion.substr(1));
 
 						cal += (allIngredients[name].cal * ratio);
 						protein += (allIngredients[name].protein * ratio);
 						carbs += (allIngredients[name].carbs * ratio);
 						fat += (allIngredients[name].fat * ratio);
 
+
 						if (allIngredients[name].proportion.find("g") != -1) {
 
-							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, myRound(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g"))) * ratio, 1) + "g") + " - ";
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, to_string(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g"))) * ratio) + "g", true) + " - ";
+
+							cout << "\n\n\n";
 
 						}
 
 						else if (allIngredients[name].proportion.find("ml") != -1) {
 
-							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, myRound(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml"))) * ratio, 1) + "ml") + " - ";
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, to_string(stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml"))) * ratio) + "ml", true) + " - ";
+
+							cout << "\n\n\n";
 
 						}
 
 						else {
 
-							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
+							foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion, true) + " - ";
+							cout << "\n\n\n";
 
 						}
 
@@ -787,35 +817,37 @@ void Tracker::track() {
 				}
 
 				else if (proportion.find("g") != -1) {
-
+	
 					//if there's a mismatch in proportion mesures throw error 
-
-					double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g")));
-
+	
+					ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("g")));
+	
 					cal += (allIngredients[name].cal * ratio);
 					protein += (allIngredients[name].protein * ratio);
 					carbs += (allIngredients[name].carbs * ratio);
 					fat += (allIngredients[name].fat * ratio);
-
-					foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
+	
+					foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion, true) + " - ";
+					cout << "\n\n\n";
 
 				}
-
+	
 				else {
-
-					double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml")));
-
+	
+					ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(allIngredients[name].proportion.substr(0, allIngredients[name].proportion.find("ml")));
+	
 					cal += (allIngredients[name].cal * ratio);
 					protein += (allIngredients[name].protein * ratio);
 					carbs += (allIngredients[name].carbs * ratio);
 					fat += (allIngredients[name].fat * ratio);
+	
+					foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion, true) + " - ";
+					cout << "\n\n\n";
 
-					foods += displayFood(name, allIngredients[name].cal * ratio, allIngredients[name].protein * ratio, allIngredients[name].carbs * ratio, allIngredients[name].fat * ratio, proportion) + " - ";
 
 				}
 
 			}
-
 
 		}
 
@@ -850,7 +882,7 @@ void Tracker::track() {
 
 					bool exit = false;
 					string name_;
-					Ingredient ing = Ingredient();
+					Ingredient ing;
 					bool found = false;
 
 					while (!exit) {
@@ -870,13 +902,14 @@ void Tracker::track() {
 						if (name_ == "exit" || name_ == "e") {
 
 							exit = true;
+
 							continue;
 
 						}
 
 						else {
 
-							for (Ingredient i : m.ingredientList) {
+							for (Ingredient& i : m.ingredientList) {
 
 								if (i.name == name_) {
 
@@ -920,7 +953,7 @@ void Tracker::track() {
 							m.carbs -= ing.carbs;
 							m.fat -= ing.fat;
 
-							updateIngredientInMeal(ing, m, proportion, true);
+							updateIngredientInMeal(ing, m, proportion);
 
 
 						}
@@ -943,7 +976,7 @@ void Tracker::track() {
 					
 					proportion = findVolumetricMesure(proportion);
 
-					updateIngredientFromMeal(m, proportion, true);
+					updateIngredientFromMeal(m, proportion);
 
 				}
 
@@ -965,6 +998,8 @@ void Tracker::track() {
 			protein += m.protein;
 			carbs += m.carbs;
 			fat += m.fat;
+
+			cout << displayFood(m.name, m.cal, m.protein, m.carbs, m.fat, m.proportion) << "\n\n\n";
 
 		}
 
@@ -1045,11 +1080,9 @@ void Tracker::track() {
 
 		}
 
-
 	}
 
-
-	cout << "Total: " << myRound(cal,0) << " cal (" << myRound(protein, 1) << "g/" << myRound(carbs, 1) << "g/" << myRound(fat, 1) << "g)\n\n\n";
+	cout << displayFood("Total", cal, protein, carbs, fat, "") << "\n\n\n";
 
 	if (d.weight == 0) {
 
@@ -1213,6 +1246,8 @@ void Tracker::log() {
 
 		}
 
+		//Since you've already rounded all the previous days to your log file, it makes sense as to rounding also your last day too, when averaging them out.
+
 		cal += stod(myRound(totalCalories, 0));
 
 		double cal_avg = cal / 7;
@@ -1354,11 +1389,42 @@ bool Tracker::checkIfMealExists(string name) {
 
 }
 
-string Tracker::displayFood(string name, double cal, double protein, double carbs, double fat, string proportion) {
+string Tracker::displayFood(string name, double cal, double protein, double carbs, double fat, string proportion, bool toConsole) {
 
 	if (proportion == "null" || proportion == "n" || proportion == "") {
 
+		if (toConsole) {
+
+			cout << name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
+
+		}
+
 		return name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
+
+	}
+
+
+	if (proportion[0] == 'x') {
+
+		proportion = "x" + myRound(stod(proportion.substr(1)), 1);
+
+	}
+
+	else if (proportion.find("g") != -1) {
+
+		proportion = myRound(stod(proportion.substr(0, proportion.find("g"))), 1) + "g";
+
+	}
+
+	else {
+
+		proportion = myRound(stod(proportion.substr(0, proportion.find("ml"))), 1) + "ml";
+
+	}
+
+	if (toConsole) {
+
+		cout << name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
 
 	}
 
@@ -1366,15 +1432,10 @@ string Tracker::displayFood(string name, double cal, double protein, double carb
 
 }
 
-void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion, bool roundProportion) {
+void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion) {
 
 	if (proportion[0] == 'x') {
 
-		if (roundProportion) {
-
-			proportion = "x" + myRound(stod(proportion.substr(1)), 1);
-
-		}
 
 		if (ing.proportion[0] == 'x') {
 
@@ -1428,11 +1489,6 @@ void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion
 
 		//throw exception if proportion doesn't match with the allIngredients list
 
-		if (roundProportion) {
-
-			proportion = myRound(stod(proportion.substr(0, proportion.find("g"))), 1) + "g";
-
-		}
 
 		double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(ing.proportion.substr(0, ing.proportion.find("g")));
 
@@ -1449,11 +1505,6 @@ void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion
 
 		//throw exception if proportion doesn't match with the allIngredients list
 
-		if (roundProportion) {
-
-			proportion = myRound(stod(proportion.substr(0, proportion.find("ml"))), 1) + "ml";
-
-		}
 
 		double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(ing.proportion.substr(0, ing.proportion.find("ml")));
 
@@ -1472,20 +1523,11 @@ void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion
 	m.carbs += ing.carbs;
 	m.fat += ing.fat;
 
-	m.ingredientList.push_back(ing);
-
-
 }
 
-void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundProportion) {
+void Tracker::updateIngredientFromMeal(Meal& m, string proportion) {
 
 	if (proportion[0] == 'x') {
-
-		if (roundProportion) {
-
-			proportion = "x" + myRound(stod(proportion.substr(1)), 1);
-
-		}
 
 		if (m.proportion[0] == 'x') {
 
@@ -1498,7 +1540,7 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 			m.proportion = proportion;
 
-			for (Ingredient ing : m.ingredientList) {
+			for (Ingredient& ing : m.ingredientList) {
 
 				ing.cal *= ratio;
 				ing.protein *= ratio;
@@ -1507,23 +1549,23 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 				if (ing.proportion[0] == 'x') {
 
-					ing.proportion = "x" + myRound(stod(ing.proportion.substr(1)) * ratio, 1);
+					ing.proportion = "x" + to_string(stod(ing.proportion.substr(1)) * ratio);
 
 				}
 
 				else if (ing.proportion.find("g") != -1) {
 
-					ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio, 1) + "g";
+					ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio) + "g";
 				}
 
 				else if (ing.proportion.find("ml") != -1) {
 
-					ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio, 1) + "ml";
+					ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio) + "ml";
 				}
 
 				else {
 
-					ing.proportion = "x" + myRound(ratio, 1);
+					ing.proportion = "x" + to_string(ratio);
 
 				}
 			}
@@ -1555,7 +1597,7 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 			}
 
-			for (Ingredient ing : m.ingredientList) {
+			for (Ingredient& ing : m.ingredientList) {
 
 				ing.cal *= stod(proportion.substr(1));
 				ing.protein *= stod(proportion.substr(1));
@@ -1594,12 +1636,6 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 		//throw exception if proportion doesn't match with the meal proportion
 
-		if (roundProportion) {
-
-			proportion = myRound(stod(proportion.substr(0, proportion.find("g"))), 1) + "g";
-
-		}
-
 		double ratio = stod(proportion.substr(0, proportion.find("g"))) / stod(m.proportion.substr(0, m.proportion.find("g")));
 
 		m.cal *= ratio;
@@ -1609,7 +1645,7 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 		m.proportion = proportion;
 
-		for (Ingredient ing : m.ingredientList) {
+		for (Ingredient& ing : m.ingredientList) {
 
 			ing.cal *= ratio;
 			ing.protein *= ratio;
@@ -1618,23 +1654,23 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 			if (ing.proportion[0] == 'x') {
 
-				ing.proportion = "x" + myRound(stod(ing.proportion.substr(1)) * ratio, 1);
+				ing.proportion = "x" + to_string(stod(ing.proportion.substr(1)) * ratio);
 
 			}
 
 			else if (ing.proportion.find("g") != -1) {
 
-				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio, 1) + "g";
+				ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio) + "g";
 			}
 
 			else if (ing.proportion.find("ml") != -1) {
 
-				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio, 1) + "ml";
+				ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio) + "ml";
 			}
 
 			else {
 
-				ing.proportion = "x" + myRound(ratio, 1);
+				ing.proportion = "x" + to_string(ratio);
 
 			}
 
@@ -1646,12 +1682,6 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 		//throw exception if proportion doesn't match with the meal proportion
 
-		if (roundProportion) {
-
-			proportion = myRound(stod(proportion.substr(0, proportion.find("ml"))), 1) + "ml";
-
-		}
-
 		double ratio = stod(proportion.substr(0, proportion.find("ml"))) / stod(m.proportion.substr(0, m.proportion.find("ml")));
 
 		m.proportion = proportion;
@@ -1661,7 +1691,7 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 		m.carbs *= ratio;
 		m.fat *= ratio;
 
-		for (Ingredient ing : m.ingredientList) {
+		for (Ingredient& ing : m.ingredientList) {
 
 			ing.cal *= ratio;
 			ing.protein *= ratio;
@@ -1670,23 +1700,23 @@ void Tracker::updateIngredientFromMeal(Meal& m, string proportion, bool roundPro
 
 			if (ing.proportion[0] == 'x') {
 
-				ing.proportion = "x" + myRound(stod(ing.proportion.substr(1)) * ratio, 1);
+				ing.proportion = "x" + to_string(stod(ing.proportion.substr(1)) * ratio);
 
 			}
 
 			else if (ing.proportion.find("g") != -1) {
 
-				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio, 1) + "g";
+				ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("g"))) * ratio) + "g";
 			}
 
 			else if (ing.proportion.find("ml") != -1) {
 
-				ing.proportion = myRound(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio, 1) + "ml";
+				ing.proportion = to_string(stod(ing.proportion.substr(0, ing.proportion.find("ml"))) * ratio) + "ml";
 			}
 
 			else {
 
-				ing.proportion = "x" + myRound(ratio, 1);
+				ing.proportion = "x" + to_string(ratio);
 
 			}
 

@@ -2,7 +2,7 @@
 
 Ingredients:
 
-protein powder: 120 cal (25g/2g/1g)
+protein powder: 140 cal (24g/2g/3.5g)
 
 butter: 70 cal (0.1g/0g/8g) (10g)
 
@@ -16,7 +16,7 @@ croissant: 272 cal (5.5g/31g/14g)
 
 chicken breast: 197 cal (29.8g/0g/7.8g) (100g)
 
-chicken leg: 321 cal (24g/0g/9g) (100g)
+chicken leg: 184 cal (24g/0g/9g) (100g)
 
 banana: 105 cal (1.3g/27g/0.4g)
 
@@ -46,7 +46,7 @@ dijon: 10 cal (0.4g/0g/0.5g) (4.9ml)
 
 frozen vegetables: 30 cal (2g/7g/0g) (85g)
 
-white rice: 160 cal (4g/36g/0g) (45g)
+white rice: 97 cal (2g/21.1g/0.2g) (100g)
 
 salmon: 468 cal (50g/0g/28g) (227g)
 
@@ -170,7 +170,7 @@ parsley: 14 cal (1.1g/2.4g/0.3g) (38g)
 
 tomato sauce: 29 cal (1.5g/6.5g/0.4g) (123g)
 
-milk (3.25%): 160 cal (8g/12g/8g) (250ml)
+milk [3.25%]: 160 cal (8g/12g/8g) (250ml)
 
 white flour[ml]: 455 cal (13g/95g/1.2g) (236.6ml)
 
@@ -179,8 +179,6 @@ white flour[g]: 455 cal (13g/95g/1.2g) (125g)
 egg: 72 cal (6.3g/0.4g/4.8g)
 
 astro fruit yogurt: 90 cal (3g/12g/4g)
-
-pork tenderloin: 125 cal (22g/0g/3.4g) (85g)
 
 garlic: 18 cal (0.8g/4g/0.1g) (12g)
 
@@ -452,12 +450,168 @@ mint and chocolate flakes ice cream: 130 cal (3g/15g/7g) (66.9g)
 
 lindt dark chocolate: 200 cal (2g/23g/12g) (38g)
 
+apple pie: 296 cal (2.4g/43g/14g) (125g)
+
+fried chicken: 377 cal (40g/4.4g/21g) (140g)
+
+crepes: 106 cal (3.8g/10g/5.3g) (64g)
+
+lutenitsa: 58 cal (1g/5g/3.8g) (30g)
+
+protein bar - peanut butter: 190 cal (20g/17g/7g)
+
+protein bar - chocolate deluxe: 180 cal (21g/17g/4.5g)
+
+protein bar - chewy chocolate chip: 190 cal (20g/18g/5g)
+
+gravy: 27 cal (0.4g/3g/1.5g) (57g)
+
+weisswurst: 285 cal (12g/0.2g/26g) (67g)
+
+chicken ham: 60 cal (12g/0g/1g) (60g)
+
+black forest ham: 60 cal (12g/0g/1.5g) (60g)
+
+turkey ham: 60 cal (12g/0g/1g) (60g)
+
+steak: 614 cal (58g/0g/41g) (221g)
+
+starch: 30 cal (0g/7.3g/0g) (8g)
+
+blueberry jam: 56 cal (0.1g/14g/0g) (20g)
+
+walnut: 13 cal (0.3g/0.3g/1.3g) (2g)
+
+mascarpone: 122 cal (1.3g/0.9g/13g) (14.8ml)
+
+egg yolk: 55 cal (2.7g/0.6g/4.5g)
+
+petit beurre: 35 cal (0.5g/5.2g/1.4g) (7.5g)
+
+potato doughnut: 220 cal (2g/27g/11g) (57g)
+
+mcdouble: 392 cal (20g/39g/17g)
+
+corn: 99 cal (3.5g/22g/1.5g) (103g)
+
+chicken heart: 6 cal (0.8g/0g/0.2g) (3g)
+
+protein bar - lemon cake: 190 cal (20g/16g/7g)
+
+protein bar - salted caramel: 190 cal (18g/20g/5g)
+
+cottage cheese: 130 cal (27g/3g/1g) (125g)
+
+protein bar - birthday cake: 190 cal (20g/18g/5g) (190ml)
+
+chipotle and lime pork loin: 150 cal (28g/4g/3.5g) (125g)
+
+pork tenderloin: 125 cal (22g/0g/3.4g) (85g)
+
+cauliflower: 132 cal (11g/24g/2.6g) (575g)
+
+brown bread: 77 cal (3.1g/14g/0.9g) (29g)
+
+turkey: 214 cal (32g/0.1g/8.4g) (113g)
+
+natural apple juice: 114 cal (0.3g/28g/0.3g) (236.6ml)
+
+werther's original: 160 cal (1g/28g/5g) (x6)
+
+sushi: 349 cal (7.8g/38g/19g) (211g)
+
+cranberry orange pecan coffee cake: 200 cal (3g/26g/10g) (52.5g)
+
+protein bar - chocolate chip cookie dough: 190 cal (21g/22g/9g)
+
+protein bar - cookies and cream: 190 cal (21g/22g/8g)
+
+mackerel: 231 cal (21g/0g/16g) (88g)
+
+panco breadcrumbs: 90 cal (3g/19g/0.5g) (25g)
+
+raw chicken breast: 227 cal (43g/0g/5g) (189g)
+
+fish broth: 39 cal (4.9g/1g/1.5g) (244g)
+
+horseradish: 2 cal (0.1g/0.6g/0g) (5g)
+
+dry spaghetti: 210 cal (7.4g/42g/0.9g) (57g)
+
+m&m's: 190 cal (2g/29g/7g) (40g)
+
+chicken: 187 cal (20g/0g/11g) (85g)
+
+rum: 97 cal (0g/0g/0g) (44.4ml)
+
+veal tongue raw: 131 cal (17.2g/1.9g/5.5g) (100g)
+
+beef tripe raw: 85 cal (12.1g/0g/3.7g) (100g)
+
+sour patch kids: 150 cal (0g/36g/0g) (40g)
+
+butternut squash: 82 cal (1.8g/22g/0.2g) (205g)
+
+chicken heart raw: 153 cal (15.6g/0.7g/9.3g) (100g)
+
+jelly beans: 150 cal (0g/37g/0g) (40g)
+
+protein bar - s'mores: 180 cal (21g/23g/7g)
+
+chutney - falafel: 15 cal (0g/3g/0.5g) (28g)
+
+chickpeas dry: 756 cal (41g/126g/12g) (236.6ml)
+
+pork shoulder raw: 245 cal (17.4g/0g/19g) (100g)
+
+costco tiramisu: 220 cal (4g/32g/7g) (85g)
+
+kirkland's dinner rolls: 120 cal (3g/20g/3g) (39g)
+
+aero: 220 cal (2g/26g/12g) (41g)
+
+boiled potato: 118 cal (2.5g/27g/0.1g) (136g)
+
+strawberry timbit: 50 cal (1g/8g/1.5g)
+
+old fashion timbit: 60 cal (1g/8g/3.5g)
+
+chocolate glazed timbit: 80 cal (1g/11g/3.5g)
+
+old fashion sugar timbit: 70 cal (1g/9g/3.5g)
+
+honey dip timbit: 50 cal (1g/8g/1.5g)
+
+old fashion glazed timbit: 80 cal (1g/12g/3.5g)
+
+sour cream glazed timbit: 90 cal (1g/11g/5g)
+
+raw shrimp: 71 cal (13.6g/0.9g/1g) (100g)
+
+parsnip: 75 cal (1.2g/18g/0.3g) (100g)
+
+orange gatorade: 160 cal (0g/43g/0g) (710ml)
+
+heinz ketchup: 20 cal (0.2g/5g/0g) (17g)
+
+raw chicken leg: 120 cal (19.2g/0g/4.2g) (100g)
+
+sunflower oil: 884 cal (0g/0g/100g) (100g)
+
+compliment's olive oil mayo: 100 cal (0.1g/0g/11g) (14.8ml)
+
+raw ground beef [lean]: 207 cal (19.6g/0g/13.7g) (100g)
+
+hamburger bun: 160 cal (5g/28g/2.5g) (61g)
+
+pickle: 11 cal (0.3g/2.3g/0.2g) (100g)
+
 
 Meals:
 
 protein shake: protein powder, banana, milk (400ml)
 
-protein shake++: protein powder, banana, milk (3.25%) (400ml)
+protein shake++: protein powder, banana, milk [3.25%] (400ml)
 
 overnight oats: chia seeds (3.3g), rolled oats (45g), yogurt (116.7g), milk (118.3ml), protein powder
 
@@ -479,9 +633,7 @@ perch with olive oil and butter (927.6g): perch (903.4g), olive oil (10g), butte
 
 potatos with olive oil and butter (977.1g): potato (930.1g), olive oil (19.8g), butter (27.2g)
 
-moussaka (3423g): egg (x2), milk (3.25%) (473.2ml), white flour[ml] (29.6ml), olive oil (40ml), carrot (209.1g), celery root (46g), red pepper (147g), onion (166.6g), ground beef (623.1g), ground pork (500g), potato (1454.8g), parsley, tomato sauce (369g), chicken stock
-
-seared pork tenderloin (793.4g): pork tenderloin (793.4g), olive oil (29.6ml)
+moussaka (3423g): egg (x2), milk [3.25%] (473.2ml), white flour[ml] (29.6ml), olive oil (40ml), carrot (209.1g), celery root (46g), red pepper (147g), onion (166.6g), ground beef (623.1g), ground pork (500g), potato (1454.8g), parsley, tomato sauce (369g), chicken stock
 
 rice with sake (640.6g): uncooked rice (334.1g), sake (100ml)
 
@@ -489,7 +641,7 @@ mushroom sauce (365.8g): garlic (15.2g), shallot (67.6g), mushroom, butter (26.8
 
 serma without grape leaves (3227.7g): ground beef (623.1g), ground pork (500g), uncooked rice (473.2g), onion (376g), olive oil (50g), chicken stock (946ml)
 
-chicken soup (3578g): red pepper (91g), onion (100g), carrot (200g), white flour[g] (18g), potato (550g), noodles (50g), uncooked rice (15g), butter (50g), yolk, cooking cream (20g), chicken stock (946ml)
+chicken soup (3578g): red pepper (91g), onion (100g), carrot (200g), white flour[g] (18g), potato (550g), noodles (50g), uncooked rice (15g), butter (50g), yolk, cooking cream (20g), chicken stock (946ml), chicken breast (130g)
 
 kurabiki (1667.4g): egg (x6), pork fat (200g), sugar (400g), yogurt (197.3g), white flour[g] (1500g)
 
@@ -501,7 +653,7 @@ mac and cheese (2603.6g): mozzarella (248.5g), fontina (176.6g), parmesan (144.3
 
 banitsa (1216g): banitsa crust (400g), yogurt (200g), feta cheese (400g), butter (90g), olive oil (50g), egg (x5)
 
-pancake (1600g): milk (3.25%) (412ml), white flour[g] (500g), egg (x6)
+pancake (1600g): milk [3.25%] (412ml), white flour[g] (500g), egg (x6)
 
 risotto (2487g): olive oil (3tbsp), butter (75g), onion (208g), mushroom (420g), garlic (29g), arborio rice (420g), white wine (450ml), chicken stock (960ml), parsley (53g), parmesan (75g), dock (200g)
 
@@ -539,4 +691,50 @@ bean stew (1593.8g): carrot (253.1g), onion (244.8g), garlic (22.6g), wax bean (
 
 mish mash (1008.8g): prosciutto (61.5g), red pepper (240g), shallot (95.5g), parsley (23.6g), tomato (110.2g), egg (x10), feta cheese (169.1g), olive oil (44.4ml), parmesan (15g)
 
-filled pepper (3513.5g): carrot (278.1g), onion (610.5g), ground pork (518g), uncooked rice (161g), red pepper (1260.8g), tomato (825.6g), chicken stock (200ml), egg (x3), olive oil (74ml), milk (3.25%) (179.7ml)
+filled pepper (3513.5g): carrot (278.1g), onion (610.5g), ground pork (518g), uncooked rice (161g), red pepper (1260.8g), tomato (825.6g), chicken stock (200ml), egg (x3), olive oil (74ml), milk [3.25%] (179.7ml)
+
+crepe with honey and butter: crepes (71g), butter (3.5g), honey (17.9g)
+
+chicken ham bagel: chicken ham (48.1g), bagel, cream cheese (31g)
+
+protein milk++: milk [3.25%] (236.6ml), protein powder
+
+black forest ham bagel: bagel, cream cheese (31g), black forest ham (48.1g)
+
+lemon biscuit cake (2000g): petit beurre (450g), milk [3.25%] (700ml), butter (75g), sugar (540ml), egg yolk (x3), mascarpone (443.6ml), starch (60g), blueberry jam (110g), walnut (100g), lindt dark chocolate (45g)
+
+turkey ham bagel: bagel, cream cheese (31g), turkey ham (48.2g)
+
+protein milk: milk (236.6ml), protein powder
+
+chicken breast with oil and garlic (188.3g): olive oil (7.4ml), chicken breast (188.3g), garlic (3.8g)
+
+cauliflower puree (700g): cauliflower (350g), potato (250g), carrot (130g), butter (42.5g), yogurt (245g)
+
+turkey rice (1800g): uncooked rice (370g), olive oil (74ml), onion (500g), pork fat
+
+turkey cabbage (1900g): red cabbage (1500g), butter (100g)
+
+fried chicken (273.7g): raw chicken breast (259g), white flour[g] (9.5g), egg (x0.5), panco breadcrumbs (21.5g), olive oil
+
+fish soup (4900g): dry spaghetti (20g), zucchini (270g), egg, carrot (100g), potato (600g), white flour[ml] (29.6ml), mackerel (189g), horseradish (50g), fish broth (2000g), olive oil (44.4ml), onion (153g), celery root (66g)
+
+chicken parm manja (2500g): chicken (820g), carrot (150g), celery root (50g), red pepper (280g), zucchini (400g), olive oil (74ml), tomato (700g), tomato sauce (450g), rum (30ml), parmesan (100g), garlic clove
+
+creme caramel (2757.1g): milk [3.25%] (1800ml), sugar (588ml), egg (x12)
+
+shkembe chorba (5830g): veal tongue raw (450g), beef tripe raw (900g), milk [3.25%] (1500ml), olive oil (55.6ml), butter (30g)
+
+pumpkin soup (2600g): zucchini, onion, butternut squash (300g), chicken stock (899ml), butter (30g), olive oil (29.6ml), potato (220g), carrot (100g)
+
+chicken hearts with onion (359.8g): onion (171.9g), chicken heart raw (447.1g), parsley (7.2g), garlic (14.3g), olive oil (59.1ml)
+
+bean, chickpeas, pork shoulder soup (4200g): pork shoulder raw (800g), romano beans (473.2ml), chickpeas dry, zucchini (300g), carrot (150g), red pepper (150g), onion (200g), tomato (400g), olive oil (29.6ml)
+
+mom's mashed potato (940g): butter (50g), milk [3.25%] (96.5ml), parmesan (11.2g), carrot (70g), boiled potato (700g)
+
+shrimp with rice (1609g): butter (50g), raw shrimp (680g), parsnip (57g), garlic (20g), uncooked rice (313g)
+
+chicken with potatoes (2120g): raw chicken leg (860g), parsnip (80g), carrot (75g), potato (1400g), sunflower oil (30g), compliment's olive oil mayo (9.9ml), mustard (4.9ml)
+
+all-dressed hamburger (280g): raw ground beef [lean] (132.7g), tomato (47.7g), cheddar (32.3g), hamburger bun, compliment's olive oil mayo, heinz ketchup (16g), mustard (9g), butter (7g), pickle (16.2g)

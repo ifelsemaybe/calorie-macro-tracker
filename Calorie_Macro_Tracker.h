@@ -119,11 +119,11 @@ public:
 	string mealAlreadyHasFood_Warning(string meal);
 
 
-	void updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion, bool roundProportion);
+	void updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion);
 
-	void updateIngredientFromMeal(Meal& m, string proportion, bool roundProportion);
+	void updateIngredientFromMeal(Meal& m, string proportion);
 
-	string displayFood(string name, double cal, double protein, double carbs, double fat, string proportion);
+	string displayFood(string name, double cal, double protein, double carbs, double fat, string proportion, bool toConsole = false);
 
 	bool checkIfIngredientExists(string name);
 
