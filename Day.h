@@ -2,14 +2,19 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
+#include "Utility.h"
 
-#include <boost/serialization/vector.hpp>;
+#include <boost/serialization/vector.hpp>
 #include <boost/archive/text_oarchive.hpp>
+#include <boost/algorithm/string.hpp>
 
 
 using namespace std;
 using namespace boost::archive;
+using namespace boost;
 
 
 class mealTime {

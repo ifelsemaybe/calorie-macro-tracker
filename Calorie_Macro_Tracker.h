@@ -20,6 +20,14 @@
 
 #include "Day.h"
 
+#include "API.h"
+
+#include "Utility.h"
+
+#include "Ingredient.h";
+
+#include "Meal.h"
+
 
 using namespace std; 
 
@@ -28,49 +36,6 @@ using namespace boost::archive;
 using namespace  boost::algorithm;
 
 using namespace boost;
-
-
-class Ingredient {
-
-public:
-
-	double cal;
-
-	double carbs, protein, fat;
-
-	string name, proportion;
-
-	Ingredient();
-
-	Ingredient(string name, double cal, double protein, double carbs, double fat, string proportion);
-
-	Ingredient(const Ingredient& copy);
-
-	friend ostream& operator << (ostream& out, const Ingredient& ing);
-
-};
-
-class Meal {
-
-public:
-
-	string name, proportion; //proportion only in grams
-
-	double cal;
-
-	double carbs, protein, fat;
-
-	vector<Ingredient> ingredientList;
-
-	Meal();
-
-	Meal(string name, vector<Ingredient> ingredientList, string proportion);
-
-	Meal(string name, vector<Ingredient> ingredientList, double cal, double protein, double carbs, double fat, string proportion);
-
-	friend ostream& operator << (ostream& out, const Meal& meal);
-
-};
 
 
 class Human {
@@ -123,12 +88,8 @@ public:
 
 	void updateIngredientFromMeal(Meal& m, string proportion, bool roundProportion);
 
-	string displayFood(string name, double cal, double protein, double carbs, double fat, string proportion);
-
 	bool checkIfIngredientExists(string name);
 
 	bool checkIfMealExists(string name);
-	
-	string myRound(double d, int decimalPlace);
 
 };
