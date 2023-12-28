@@ -1,7 +1,4 @@
 #include "Day.h";
-#include "Calorie_Macro_Tracker.h";
-
-Tracker tHelp = Tracker();
 
 mealTime::mealTime(){}
 
@@ -85,7 +82,7 @@ string Day::displayDay(bool skip) {
 
 	for (mealTime mT : listOfMealTimes) {
 
-		toReturn += "\t" + tHelp.displayFood(mT.name, mT.calories, mT.protein, mT.protein, mT.fat, "null") + "\n\n" + mT.foods.substr(0, mT.foods.size() - 3) + "]\n\n\n";
+		toReturn += "\t" + displayFood(mT.name, mT.calories, mT.protein, mT.protein, mT.fat, "null") + "\n\n" + mT.foods.substr(0, mT.foods.size() - 3) + "]\n\n\n";
 
 		totalCalories += mT.calories;
 		totalProtein += mT.protein;
@@ -96,11 +93,11 @@ string Day::displayDay(bool skip) {
 
 	if (weight == 0 && !skip) {
 
-		return toReturn + "\n" + tHelp.displayFood("Total", totalCalories, totalProtein, totalCarbs, totalFat, "null") + "\n\nWeight: NO INPUT";
+		return toReturn + "\n" + displayFood("Total", totalCalories, totalProtein, totalCarbs, totalFat, "null") + "\n\nWeight: NO INPUT";
 
 	}
 
-	return toReturn + "\n" + tHelp.displayFood("Total", totalCalories, totalProtein, totalCarbs, totalFat, "null") + "\n\nWeight: " + tHelp.myRound(weight, 2) + " kg";
+	return toReturn + "\n" + displayFood("Total", totalCalories, totalProtein, totalCarbs, totalFat, "null") + "\n\nWeight: " + myRound(weight, 2) + " kg";
 
 }
 

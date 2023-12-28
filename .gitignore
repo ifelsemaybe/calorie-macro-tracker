@@ -4,3 +4,5 @@ x64/
 *.vcxproj
 *.vcxproj.*
 Human Stats.txt
+.gitignore
+API_Key&ID.txt

@@ -1,7 +1,5 @@
 #include "Calorie_Macro_Tracker.h"
 
-Tracker t = Tracker();
-
 string getTime() {
 
 	time_t t = time(NULL);
@@ -14,26 +12,6 @@ string getTime() {
 
 }
 
-
-string Tracker::myRound(double d, int decimalPlace) {
-
-	decimalPlace = pow(10, decimalPlace);
-
-	d = round(d * decimalPlace) / decimalPlace;
-
-	string d_str = to_string(d);
-
-	d_str = d_str.substr(0, d_str.find_last_not_of('0') + 1);
-
-	if (d_str.find('.') == d_str.size() - 1) {
-
-		d_str = d_str.substr(0, d_str.size() - 1);
-
-	}
-
-	return d_str;
-
-}
 
 string toMl(double proportion, string mesure) {
 
@@ -106,82 +84,6 @@ list<string> readFoodStats(list<string> text) {
 	myFile.close();
 
 	return text;
-
-}
-
-Ingredient::Ingredient() {}
-
-Ingredient::Ingredient(string name, double cal, double protein, double carbs, double fat, string proportion) {
-
-	this->name = name;
-	this->cal = cal;
-	this->protein = protein;
-	this->carbs = carbs;
-	this->fat = fat;
-	this->proportion = proportion;
-
-}
-
-Ingredient::Ingredient(const Ingredient& copy) {
-
-	cal = copy.cal;
-	carbs = copy.carbs;
-	protein = copy.protein;
-	fat = copy.fat;
-	name = copy.name;
-	proportion = copy.proportion;
-
-}
-
-ostream& operator << (ostream& out, const Ingredient& ing) {
-
-	out << t.displayFood(ing.name, ing.cal, ing.protein, ing.carbs, ing.fat, ing.proportion);
-
-	return out;
-
-}
-
-Meal::Meal() {
-	
-	cal = 0;
-	carbs = 0;
-	protein = 0;
-	fat = 0;
-
-}
-
-Meal::Meal(string name, vector<Ingredient> ingredientList, string proportion) {
-
-	this->name = name;
-	this->ingredientList = ingredientList;
-	this->proportion = proportion;
-
-}
-
-Meal::Meal(string name, vector<Ingredient> ingredientList, double cal, double protein, double carbs, double fat, string proportion) {
-
-	this->name = name;
-	this->ingredientList = ingredientList;
-	this->cal = cal;
-	this->protein = protein;
-	this->carbs = carbs;
-	this->fat = fat;
-	this->proportion = proportion;
-
-}
-
-ostream& operator << (ostream& out, const Meal& meal) {
-
-	out << t.displayFood(meal.name, meal.cal, meal.protein, meal.carbs, meal.fat, meal.proportion) + "\n\n";
-	out << "List of Ingredients: \n\n\n";
-
-	for (auto& el : meal.ingredientList) {
-
-		out << el << "\n\n";
-
-	}
-
-	return out;
 
 }
 
@@ -390,44 +292,60 @@ void Tracker::inputIngredient() {
 
 	cout << endl;
 
-	cout << "calories? ";
+	to_lower(name);
+	Ingredient i = Ingredient();
 
-	cin >> calories;
+	if (API::getRequest(name, i)) { //API returns true if ingredient was found!
 
-	cout << endl;
+		input = displayFood(i.name, i.cal, i.protein, i.carbs, i.fat, i.proportion);
 
-	cout << "protein? ";
+		allIngredients[i.name] = i;
+	}
 
-	cin >> protein;
+	else {
 
-	cout << endl;
+		cout << "Sorry! Ingredient " << name << " was not found through API... please input values manually.\n\n";
 
-	cout << "carbs? ";
+		cout << "calories? ";
 
-	cin >> carbs;
+		cin >> calories;
 
-	cout << endl;
+		cout << endl;
 
-	cout << "fat? ";
+		cout << "protein? ";
 
-	cin >> fat;
+		cin >> protein;
 
-	cout << endl;
+		cout << endl;
 
-	cout << "proportion? ";
+		cout << "carbs? ";
 
-	cin >> proportion;
+		cin >> carbs;
 
-	cout << endl;
+		cout << endl;
 
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "fat? ";
+
+		cin >> fat;
+
+		cout << endl;
+
+		cout << "proportion? ";
+
+		cin >> proportion;
+
+		cout << endl;
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 
-	proportion = findVolumetricMesure(proportion);
+		proportion = findVolumetricMesure(proportion);
 
-	input = displayFood(name, calories, protein, carbs, fat, proportion);
+		input = displayFood(name, calories, protein, carbs, fat, proportion);
 
-	allIngredients[name] = (proportion == "null" || proportion == "n") ? Ingredient(name, calories, protein, carbs, fat, "") : Ingredient(name, calories, protein, carbs, fat, proportion);
+		allIngredients[name] = (proportion == "null" || proportion == "n") ? Ingredient(name, calories, protein, carbs, fat, "") : Ingredient(name, calories, protein, carbs, fat, proportion);
+
+	}
 
 	text.clear();
 
@@ -1389,48 +1307,6 @@ bool Tracker::checkIfMealExists(string name) {
 
 }
 
-string Tracker::displayFood(string name, double cal, double protein, double carbs, double fat, string proportion, bool toConsole) {
-
-	if (proportion == "null" || proportion == "n" || proportion == "") {
-
-		if (toConsole) {
-
-			cout << name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
-
-		}
-
-		return name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g)";
-
-	}
-
-
-	if (proportion[0] == 'x') {
-
-		proportion = "x" + myRound(stod(proportion.substr(1)), 1);
-
-	}
-
-	else if (proportion.find("g") != -1) {
-
-		proportion = myRound(stod(proportion.substr(0, proportion.find("g"))), 1) + "g";
-
-	}
-
-	else {
-
-		proportion = myRound(stod(proportion.substr(0, proportion.find("ml"))), 1) + "ml";
-
-	}
-
-	if (toConsole) {
-
-		cout << name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
-
-	}
-
-	return name + ": " + myRound(cal, 0) + " cal (" + myRound(protein, 1) + "g/" + myRound(carbs, 1) + "g/" + myRound(fat, 1) + "g) (" + proportion + ")";
-
-}
 
 void Tracker::updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion) {
 
