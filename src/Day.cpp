@@ -1,4 +1,5 @@
 #include "Day.h";
+#include "Utility.h";
 
 mealTime::mealTime(){}
 
@@ -254,7 +255,7 @@ void Day::remove(mealTime& mT) {
 void Day::switchOrder(mealTime& mT1, mealTime& mT2) {
 
 	listOfMealTimes[mT1.order - 1] = mT2;
-
+	
 	listOfMealTimes[mT1.order - 1].order = mT1.order;
 
 	listOfMealTimes[mT2.order - 1] = mT1;

@@ -3,8 +3,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-
-#include "Utility.h"
 #include "Ingredient.h"
 
 #include "curl/curl.h"

@@ -66,3 +66,34 @@ Weight: 67 kg
 
 
 
+Day 3 (2/10/2024):
+------------------
+
+
+	Breakfast: 78 cal (0.4g/0.4g/0.2g)
+
+[Foods ==> apple: 78 cal (0.4g/20.6g/0.2g) (150g)]
+
+
+	Lunch: 309 cal (17.7g/17.7g/9g)
+
+[Foods ==> bagel: 309 cal (17.7g/36g/9g)]
+
+
+	Snack: 0 cal (0g/0g/0g)
+
+[Foods =]
+
+
+	Dinner: 463 cal (38.6g/38.6g/21.9g)
+
+[Foods ==> chili: 463 cal (38.6g/26.3g/21.9g) (300g)]
+
+
+
+Total: 850 cal (56.8g/83g/31.2g)
+
+Weight: 87 kg
+
+
+

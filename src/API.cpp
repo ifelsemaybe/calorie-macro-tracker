@@ -30,7 +30,7 @@ bool API::getRequest(string ingrName, Ingredient& ingr) {
 
 	string url = "https://api.edamam.com/api/food-database/v2/parser?" + API_ID + "&" + API_Key;
 
-	string query = "ingr=";
+	string query = "ingr=Milliliter%20";
 
 
 	CURL* curl = curl_easy_init();
@@ -51,7 +51,7 @@ bool API::getRequest(string ingrName, Ingredient& ingr) {
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
 
 
-	//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1); //<-- Uncomment for extra debug info
+	//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1); /*<-- Uncomment for extra debug info*/
 
 
 	CURLcode result;
@@ -80,6 +80,15 @@ bool API::getRequest(string ingrName, Ingredient& ingr) {
 
 		setIngredient(ingr, nutrients, found);
 
+		auto measure = jsonData["parsed"][0]["measure"];
+
+		if ((string)measure["label"] == "Milliliter") {
+
+			ingr.propValues[1] = 1 / (double)measure["weight"] * 100;
+
+		}
+
+
 	}
 
 	else {
@@ -95,12 +104,42 @@ bool API::getRequest(string ingrName, Ingredient& ingr) {
 				setIngredient(ingr, nutrients, found);
 				ingr.name = label;
 
+				auto measures = el.value()["food"]["measures"];
+
+				bool foundML = false;
+
+				for (auto& x : measures.items()) {
+
+					string propType = (string)x.value()["label"];
+
+					if (propType == "Milliliter") {
+
+						ingr.propValues[1] = 1 / stod((string)x.value()["weight"]) * 100;
+						foundML = true;
+						break;
+					}
+
+				}
+
+				if (!foundML) {
+
+					ingr.propValues[1] = -1;
+
+				}
+
+				if (found) {
+
+					break;
+				}
+
 			}
 
 		}
 
 	}
 
+	ingr.propValues[2] = -1;
+	ingr.brand = "none";
 
 	curl_slist_free_all(headers);
 	curl_easy_cleanup(curl);
@@ -116,7 +155,7 @@ void setIngredient(Ingredient& i, nlohmann::json_abi_v3_11_3::json nutrients, bo
 	i.carbs = nutrients["CHOCDF"];
 	i.fat = nutrients["FAT"];
 
-	i.proportion = "100g";
+	i.propValues[0] = 100;
 
 	found = true;
 

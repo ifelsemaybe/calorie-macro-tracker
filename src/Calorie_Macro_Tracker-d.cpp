@@ -1,6 +1,7 @@
 #include "Calorie_Macro_Tracker.h"
 
 
+
 bool guard(string command) {
 
 	cout << "Are you sure you want to " + command + " (y/n)? ";
@@ -92,6 +93,7 @@ int main() {
 		else if (answer == "debug") {
 
 			t.debug();
+
 		}
 
 		else if (answer == "log") {

@@ -17,12 +17,7 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/algorithm/string.hpp>
 
-
 #include "Day.h"
-
-#include "API.h"
-
-#include "Utility.h"
 
 #include "Ingredient.h";
 
@@ -54,17 +49,19 @@ class Tracker {
 
 public:
 
-	unordered_map<string, Ingredient> allIngredients;
+	unordered_map<int, Ingredient> allIngredients;
 
-	unordered_map<string, Meal> mealList;
-
-	list<string> text;
+	unordered_map<int, Meal> allMeals;
 
 	Human h;
 
 	Day d;
 
-	int lineCount;
+	
+
+	bool sql_mealIsLogged;
+	int sql_mealID = -1;
+
 
 	void readStats();
 
@@ -84,12 +81,14 @@ public:
 	string mealAlreadyHasFood_Warning(string meal);
 
 
-	void updateIngredientInMeal(Ingredient &ing, Meal &m, string proportion);
+	void updateIngredientInMeal(Ingredient &ing, Meal &m, double proportionValue, string proportionType, bool countMeal = true);
 
-	void updateIngredientFromMeal(Meal& m, string proportion);
+	void updateIngredientFromMeal(Meal& m, double proportionValue, string proportionType);
 
-	bool checkIfIngredientExists(string name);
+	int checkIfIngredientExists(string name, string brand);
 
-	bool checkIfMealExists(string name);
+	void askForIngredient(int& id, string& name, string& brand);
+
+	int checkIfMealExists(string name, int variation);
 
 };

@@ -5,8 +5,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "Utility.h"
-
 #include <boost/serialization/vector.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/algorithm/string.hpp>
