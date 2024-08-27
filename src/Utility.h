@@ -19,11 +19,21 @@ namespace {
 
 		time_t t = time(NULL);
 
-		struct tm time;
+        #if defined(_WIN64) || defined(WIN32) 
+
+        struct tm time;
 
 		localtime_s(&time, &t); // for windows use
 
 		return to_string(time.tm_mon + 1) + "/" + to_string(time.tm_mday) + "/" + to_string(1900 + time.tm_year);
+
+        #elif __linux__
+
+        tm* time = localtime(&t);
+
+        return to_string(time->tm_mon + 1) + "/" + to_string(time->tm_mday) + "/" + to_string(1900 + time->tm_year);
+
+        #endif
 
 	}
 

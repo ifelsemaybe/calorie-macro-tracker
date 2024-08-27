@@ -1,6 +1,6 @@
-#include "API.h";
+#include "API.h"
 
-size_t write(void* data, size_t size, size_t nmemb, string* userdata);
+size_t write_cb(void* data, size_t size, size_t nmemb, string* userdata);
 void setIngredient(Ingredient& i, nlohmann::json_abi_v3_11_3::json nutrients, bool& found);
 
 
@@ -47,7 +47,7 @@ bool API::getRequest(string ingrName, Ingredient& ingr) {
 
 
 	string response;
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write);
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_cb);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
 
 
@@ -161,7 +161,7 @@ void setIngredient(Ingredient& i, nlohmann::json_abi_v3_11_3::json nutrients, bo
 
 }
 
-size_t write(void* data, size_t size, size_t nmemb, string* userdata) {
+size_t write_cb(void* data, size_t size, size_t nmemb, string* userdata) {
 
 	userdata->append((char*)data, size * nmemb);
 

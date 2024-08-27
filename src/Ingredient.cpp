@@ -1,5 +1,5 @@
-#include "Ingredient.h";
-#include "Utility.h";
+#include "Ingredient.h"
+#include "Utility.h"
 
 Ingredient::Ingredient() {
 	

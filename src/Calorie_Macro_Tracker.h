@@ -19,7 +19,7 @@
 
 #include "Day.h"
 
-#include "Ingredient.h";
+#include "Ingredient.h"
 
 #include "Meal.h"
 

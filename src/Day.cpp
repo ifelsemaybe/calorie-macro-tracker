@@ -1,5 +1,5 @@
-#include "Day.h";
-#include "Utility.h";
+#include "Day.h"
+#include "Utility.h"
 
 mealTime::mealTime(){}
 

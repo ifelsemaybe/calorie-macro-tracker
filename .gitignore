@@ -1,4 +1,4 @@
-x64/
+x64*/
 .vs/
 *.sln
 *.vcxproj
@@ -6,3 +6,5 @@ x64/
 .gitignore
 API_Key&ID.txt
 misc/
+CMakeLists.txt
+build/

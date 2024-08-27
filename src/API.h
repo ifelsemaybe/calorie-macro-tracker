@@ -9,7 +9,7 @@
 #include "nlohmann/json.hpp"
 #include "boost/algorithm/string.hpp"
 
-#undef max;
+#undef max
 
 using namespace std;
 using namespace boost;
@@ -20,4 +20,4 @@ public:
 
 	static bool getRequest(string ingrName, Ingredient& ingr);
 
-};
+} api;
